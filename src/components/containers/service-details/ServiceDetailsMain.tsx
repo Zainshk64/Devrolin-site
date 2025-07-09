@@ -14,8 +14,6 @@ const ServiceDetailsMain = () => {
                 <div className="poster fade-top">
                   <Image src={thumbone} alt="Image" />
                 </div>
-                {/* /jasjsa */}
-                {/* /def */}
                 <div className="details-group section__cta text-start">
                   <h3 className="title-anim">Why do we use it?</h3>
                   <p>
