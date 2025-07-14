@@ -16,7 +16,7 @@ const VideoModal = () => {
         <video autoPlay loop muted controls>
           <source src="/images/Popup-Video.mp4" type="video/mp4" />
         </video>
-        <h5>Hello</h5>
+        <h5>Hello!</h5>
       </div>
     </div>
   );

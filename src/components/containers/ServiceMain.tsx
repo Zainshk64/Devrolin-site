@@ -31,10 +31,10 @@ const ServiceMain = () => {
                 className="service-t__slider"
                 breakpoints={{
                   1400: {
-                    slidesPerView: 4,
+                    slidesPerView: 3,
                   },
                   1200: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                   },
                   768: {
                     slidesPerView: 2,
@@ -107,7 +107,7 @@ const ServiceMain = () => {
                           <i className="fa-solid fa-arrow-right"></i>
                         </span>
                         <h4>
-                          <Link href="service-single">Development</Link>
+                          <Link href="service-single">Web Development</Link>
                         </h4>
                       </div>
                       <ul>
@@ -154,7 +154,7 @@ const ServiceMain = () => {
                     </div>
                   </div>
                 </SwiperSlide>
-                 <SwiperSlide>
+                 {/* <SwiperSlide>
                   <div className="service-t-single-wrapper">
                     <div className="service-t__slider-single">
                       <div className="intro">
@@ -265,7 +265,7 @@ const ServiceMain = () => {
                       </div>
                     </div>
                   </div>
-                </SwiperSlide>
+                </SwiperSlide> */}
               </Swiper>
             </div>
           </div>

@@ -65,7 +65,7 @@ const WhatsappRedirectBtn = () => {
 
           .Btn:hover .tooltip {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX();
           }
 
           .svgContainer {
@@ -87,7 +87,7 @@ const WhatsappRedirectBtn = () => {
             padding: 5px 10px;
             border-radius: 5px;
             opacity: 0;
-            transform: translateX(10px);
+            transform: translateX(0px);
             transition: all 0.3s;
             white-space: nowrap;
           }

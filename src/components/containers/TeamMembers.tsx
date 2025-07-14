@@ -27,7 +27,7 @@ const TeamMembers = () => {
                       <i className="fa-solid fa-arrow-right"></i>
                     </span>
                     <h2 className="title title-anim">
-                      our xpovio team members
+                      our DevRolin team members
                     </h2>
                   </div>
                 </div>

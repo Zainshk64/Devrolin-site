@@ -270,13 +270,17 @@ const HomeTestimonial = () => {
         <div className="slide-group justify-content-start">
           <button
             aria-label="previous item"
-            className="slide-btn prev-testimonial-three"
+                    style={{ border: '2px solid #FF7425', color:'white' }}
+
+            className="slide-btn  prev-testimonial-three"
           >
             <i className="fa-light fa-angle-left"></i>
           </button>
           <button
             aria-label="next item"
             className="slide-btn next-testimonial-three"
+                    style={{ border: '2px solid #FF7425', color:'white' }}
+
           >
             <i className="fa-light fa-angle-right"></i>
           </button>

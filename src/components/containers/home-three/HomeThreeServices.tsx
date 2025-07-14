@@ -50,7 +50,7 @@ const HomeThreeServices = () => {
                     01
                     <i className="fa-solid fa-arrow-right"></i>
                   </span>
-                  <h4>Digitalization</h4>
+                  <h4>UI/UX Design</h4>
                   <div className="p-single">
                     <p>
                       We build intelligent next-generation solutions at the
@@ -98,7 +98,7 @@ const HomeThreeServices = () => {
                     02
                     <i className="fa-solid fa-arrow-right"></i>
                   </span>
-                  <h4>Modernization</h4>
+                  <h4>Web Development</h4>
                   <div className="p-single">
                     <p>
                       We build intelligent next-generation solutions at the
@@ -146,7 +146,7 @@ const HomeThreeServices = () => {
                     03
                     <i className="fa-solid fa-arrow-right"></i>
                   </span>
-                  <h4>Accelerating Innovation</h4>
+                  <h4>AI Brilliance</h4>
                   <div className="p-single">
                     <p>
                       We build intelligent next-generation solutions at the
@@ -183,7 +183,7 @@ const HomeThreeServices = () => {
                   onClick={() => setImgTab(imgTab === 2 ? -1 : 2)}
                 ></button>
               </div>
-              <div
+              {/* <div
                 className={
                   "service-f-single fade-top " +
                   (imgTab == 3 ? " service-f-single-active" : " ")
@@ -230,7 +230,7 @@ const HomeThreeServices = () => {
                   className="toggle-service-f"
                   onClick={() => setImgTab(imgTab === 3 ? -1 : 3)}
                 ></button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
