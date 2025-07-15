@@ -105,21 +105,7 @@ const HomeOffer = () => {
                   <Image src={three} alt="Image" />
                 </div>
               </div>
-              {/* <div className="offer__cta-single fade-top">
-                <span className="sub-title">
-                  04
-                  <i className="fa-solid fa-arrow-right"></i>
-                </span>
-                <h2>
-                  <Link href="service-single">
-                  Blockchain Mastery
-                    <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                  </Link>
-                </h2>
-                <div className="offer-thumb-hover d-none d-md-block">
-                  <Image src={four} alt="Image" />
-                </div>
-              </div> */}
+              
             </div>
           </div>
         </div>
