@@ -13,23 +13,18 @@ import dthree from "public/images/projects/d-three.png";
 import dfour from "public/images/projects/d-four.png";
 import dfive from "public/images/projects/d-five.png";
 
-const ProjectDetailsMain = () => {
+const ProjectDetailsMain = ({project}) => {
   return (
     <section className="section project-d">
       <div className="container">
         <div className="row gaper">
           <div className="col-12 col-lg-6">
             <div className="project-d-group">
-              <h3 className="light-title-lg">Road Map Engineering</h3>
+              <h3 className="light-title-lg">{project.title}</h3>
               <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don&apos;t look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum, you need to be sure there isn&apos;t anything
-                embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as
-                necessary,
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
               </p>
             </div>
           </div>
@@ -74,10 +69,15 @@ const ProjectDetailsMain = () => {
                 >
                   <SwiperSlide>
                     <div className="poster__slider-single">
-                      <Image src={poster} alt="Image" />
+                      <img src={project.mainImage?.url} alt="Image" />
                     </div>
                   </SwiperSlide>
-                  <SwiperSlide>
+                  {/* <SwiperSlide>
+                    <div className="poster__slider-single">
+                      <img src={project.snapshots?.url} alt="Image" />
+                    </div>
+                  </SwiperSlide> */}
+                  {/* <SwiperSlide>
                     <div className="poster__slider-single">
                       <Image src={poster} alt="Image" />
                     </div>
@@ -106,12 +106,7 @@ const ProjectDetailsMain = () => {
                     <div className="poster__slider-single">
                       <Image src={poster} alt="Image" />
                     </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="poster__slider-single">
-                      <Image src={poster} alt="Image" />
-                    </div>
-                  </SwiperSlide>
+                  </SwiperSlide> */}
                 </Swiper>
               </div>
               <div className="slide-group">
@@ -136,7 +131,7 @@ const ProjectDetailsMain = () => {
             <div className="project-d-o__single fade-top">
               <div className="content">
                 <h5>Sectors</h5>
-                <p>Roads & Highway</p>
+                <p>{project.sector}</p>
               </div>
               <div className="thumb">
                 <Image src={iconone} alt="Image" />
@@ -147,7 +142,7 @@ const ProjectDetailsMain = () => {
             <div className="project-d-o__single fade-top">
               <div className="content">
                 <h5>Owner</h5>
-                <p>Some Comapny</p>
+                <p>{project.owner}</p>
               </div>
               <div className="thumb">
                 <Image src={icontwo} alt="Image" />
@@ -158,7 +153,8 @@ const ProjectDetailsMain = () => {
             <div className="project-d-o__single fade-top">
               <div className="content">
                 <h5>Project Date</h5>
-                <p>Start: 2021 - End: 2023</p>
+                <p>{new Date(project.startDate).toLocaleDateString('en')} -{' '}
+                    {new Date(project.endDate).toLocaleDateString('en')}</p>
               </div>
               <div className="thumb">
                 <Image src={iconthree} alt="Image" />
@@ -171,14 +167,7 @@ const ProjectDetailsMain = () => {
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">Project Description</h3>
               <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don&apos;t look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum, you need to be sure there isn&apos;t anything
-                embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as
-                necessary
+                {project.description}
               </p>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
@@ -216,14 +205,7 @@ const ProjectDetailsMain = () => {
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">The Result</h3>
               <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don&apos;t look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum, you need to be sure there isn&apos;t anything
-                embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as
-                necessary
+                {project.result}
               </p>
               <p>
                 There are many variations of passages of Lorem Ipsum available,

@@ -1,15 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import CmnBanner from "@/components/layout/banner/CmnBanner";
 import ProjectMain from "@/components/containers/project/ProjectMain";
 import WorkStepsProject from "@/components/containers/project/WorkStepsProject";
 import CtaTwo from "@/components/containers/service-details/CtaTwo";
+import { toast } from "react-toastify";
 
 const OurProjects = () => {
+  const [projects, setProjects] = useState([]);
+  
+    const fetchProjects = async () => {
+      const token = localStorage.getItem('adminToken');
+      try {
+        const res = await fetch('http://localhost:4000/api/projects/', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        const data = await res.json();
+        if (res.ok) {
+          setProjects(data.projects || []);
+        } else {
+          toast.error(data.message || 'Failed to load projects');
+        }
+      } catch (err) {
+        toast.error('Server error while fetching projects');
+
+      }
+    };
+  
+    useEffect(() => {
+
+      fetchProjects();
+    }, []);
   return (
     <Layout header={2} footer={5} video={0}>
       <CmnBanner title="Our Projects" navigation="Our Projects" />
-      <ProjectMain />
+      <ProjectMain projects={projects} />
       <WorkStepsProject />
       <CtaTwo />
     </Layout>

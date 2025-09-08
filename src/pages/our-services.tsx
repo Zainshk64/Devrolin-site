@@ -6,6 +6,7 @@ import HomeTwoModal from "@/components/containers/home-two/HomeTwoModal";
 import UxProcessTwo from "@/components/containers/service-details/UxProcessTwo";
 import HomeTestimonialThree from "@/components/containers/home-three/HomeTestimonialThree";
 import CtaTwo from "@/components/containers/service-details/CtaTwo";
+import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
 
 const OurServices = () => {
   return (
@@ -14,7 +15,7 @@ const OurServices = () => {
       <ServiceMain />
       <HomeTwoModal />
       <UxProcessTwo />
-      <HomeTestimonialThree />
+      <HomeTestimonial/>
       <CtaTwo />
     </Layout>
   );

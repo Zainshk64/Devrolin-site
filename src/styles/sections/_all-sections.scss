@@ -1914,7 +1914,7 @@
           top: 0px;
           left: 100%;
           bottom: 0px;
-          width: 60px;
+          width: 100px;
           height: 100%;
           background: linear-gradient(90deg, #f90 0%, #cc2500 100%);
           transition: all 0.4s ease-in-out;
@@ -3338,7 +3338,7 @@
       justify-content: center;
       right: 70px;
       bottom: 0px;
-      width: 60px;
+      width: 100px;
       height: 180px;
       background: linear-gradient(90deg, #f90 0%, #cc2500 100%);
       a {
@@ -3885,12 +3885,31 @@ select {
     color: white;
     font-size: 20px;
     top: 50%;
-
     right: 20px;
     position: absolute;
   }
+}
+ .admin-social{
+  text-decoration: underline;
+ }
+.socials{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.socials .socialin p{
+  transition: .2s linear;
+
+
+}
+.socials .socialin p:hover{
+  margin-left: 5px;
+  
+
+
 }
 
 /* ==== 
  --------- (5.0) all sections styles end ---------
  ==== */
+

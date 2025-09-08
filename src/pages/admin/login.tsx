@@ -1,61 +1,82 @@
+'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '@/components/layout/Layout';
+import { toast } from 'react-toastify';
 
 const AdminLogin = () => {
   const router = useRouter();
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (password === 'admin123') {
-      localStorage.setItem('isAdmin', 'true');
+  const handleLogin = async () => {
+    if (!name || !password) {
+      return toast.error('Please fill in all fields');
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:4000/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message || 'Login failed');
+        return;
+      }
+
+      // Save token and user
+      localStorage.setItem('adminToken', data.token);
+      localStorage.setItem('adminUser', JSON.stringify(data.user));
+
+      toast.success('Login successful');
       router.push('/admin');
-    } else {
-      alert('Unauthorized');
+    } catch (err) {
+      toast.error('Something went wrong');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-                    // style={{ border: '2px solid #FF7425' }}
-    <Layout header={1} footer={5} video={0}> 
+    <Layout header={1} footer={5} video={0}>
       <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-white">
-        <div className="card bg-black shadow p-4" style={{ maxWidth: '400px', width: '100%', border:'2px solid #FF7425' }}>
+        <div className="card bg-black shadow p-4" style={{ maxWidth: '400px', width: '100%', border: '2px solid #FF7425' }}>
           <div className="card-body">
-            <h3 className="card-title title title-anim text-center mb-4">Admin Login</h3>
+            <h4 className="card-title text-center mb-4">Admin Login</h4>
+
             <div className="mb-3">
-              <label htmlFor="adminPassword" className="form-label">Username:</label>
               <input
-                type="Username"
+                type="text"
                 className="form-control"
-                id="adminusername"
                 placeholder="Enter Username"
-                // value={password}a
-                // onChange={(e) => setPassword(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="adminPassword" className="form-label">Password</label>
+            <div className="mb-4 bg-dark">
               <input
                 type="password"
                 className="form-control"
-                id="adminPassword"
-                placeholder="Enter password"
+                placeholder="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            {/* <div className="d-grid">
-              <button  className="btn btn--secondary text-black fw-bold">
-                Login
-              </button>
-            </div> */}
-             <div className="section__content-cta">
-                <button onClick={handleLogin} className="btn btn--primary">
-                  Login
-                </button>
-              </div>
+            <button
+              onClick={handleLogin}
+              disabled={loading}
+              className="btn btn--primary w-100"
+            >
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
           </div>
         </div>
       </div>

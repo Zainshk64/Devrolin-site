@@ -61,12 +61,12 @@ const ServiceMain = () => {
                         <li>User Flow</li>
                         <li>Information Architecture</li>
                       </ul>
-                      <div className="cta">
+                      {/* <div className="cta">
                         <Link href="service-single">
                           <i className="icon-arrow-top-right"></i>
                           <span>service details</span>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </SwiperSlide>
@@ -89,12 +89,12 @@ const ServiceMain = () => {
                         <li>Final Delivery</li>
                         <li>Post Delivery Support</li>
                       </ul>
-                      <div className="cta">
+                      {/* <div className="cta">
                         <Link href="service-single">
                           <i className="icon-arrow-top-right"></i>
                           <span>service details</span>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </SwiperSlide>
@@ -117,12 +117,12 @@ const ServiceMain = () => {
                         <li>Post Delivery Support</li>
                         <li>server development</li>
                       </ul>
-                      <div className="cta">
+                      {/* <div className="cta">
                         <Link href="service-single">
                           <i className="icon-arrow-top-right"></i>
                           <span>service details</span>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </SwiperSlide>
@@ -145,12 +145,12 @@ const ServiceMain = () => {
                         <li>AI-Powered Marketing & Sales</li>
                         <li>Predictive Insights</li>
                       </ul>
-                      <div className="cta">
+                      {/* <div className="cta">
                         <Link href="service-single">
                           <i className="icon-arrow-top-right"></i>
                           <span>service details</span>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </SwiperSlide>

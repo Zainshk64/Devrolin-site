@@ -11,7 +11,7 @@ import hrfive from "public/images/projects/hr-five.png";
 import hrsix from "public/images/projects/hr-six.png";
 
 gsap.registerPlugin(ScrollTrigger);
-const ProjectMain = () => {
+const ProjectMain = ({projects}) => {
   const slider = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,23 +44,36 @@ const ProjectMain = () => {
 
   return (
     <section className="section project-sl" ref={slider}>
-      <div className="project-sl__single">
+      {/* {projects.length > 0 ? ( */}
+      {projects.map((project) => (
+
+
+      <div key={project._id} className="project-sl__single">
         <div className="thumb">
-          <Link href="project-single">
-            <Image src={hrone} alt="Image" />
+          <Link href={`/project-single/${project._id}`}>
+            <img
+                  src={project.mainImage?.url}
+                  className="card-img-top img-fluid"
+                  alt={project.mainImage?.alt || 'project'}
+                  style={{ height: 180, objectFit: 'cover' }}
+                />
           </Link>
         </div>
         <div className="content">
           <h2>
-            <Link href="project-single">
-              mobile app
-              <br />
-              development
+            <Link href={`/project-single/${project._id}`}>
+             {project.title}
+              
             </Link>
           </h2>
         </div>
       </div>
-      <div className="project-sl__single">
+            ))}
+        {/* </div>
+      ) : (
+        <p className="text-white text-center mt-4">No projects found.</p>
+      )} */}
+       <div className="project-sl__single">
         <div className="thumb">
           <Link href="project-single">
             <Image src={hrtwo} alt="Image" />
@@ -108,6 +121,8 @@ const ProjectMain = () => {
           </h2>
         </div>
       </div>
+      {/*
+
       <div className="project-sl__single">
         <div className="thumb">
           <Link href="project-single">
@@ -235,7 +250,7 @@ const ProjectMain = () => {
             </Link>
           </h2>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

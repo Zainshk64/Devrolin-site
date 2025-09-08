@@ -1,0 +1,36 @@
+import BlogDetailsMain from "@/components/containers/blog/BlogDetailsMain";
+import BlogSingleBanner from "@/components/layout/banner/BlogSingleBanner";
+import Layout from "@/components/layout/Layout";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+const BlogDetais = () => {
+     const { id } = useRouter().query;
+      const [blogs, setBlogs] = useState(null);
+    
+      const fetchBlogs = async () => {
+        try {
+          const res = await fetch(`http://localhost:4000/api/blogs/${id}`);
+          const data = await res.json();
+          setBlogs(data);
+        } catch (err) {
+          toast.error("Failed to fetch details");
+        }
+      };
+    
+      useEffect(() => {
+        if (id) fetchBlogs();
+      }, [id]);
+    
+      if (!blogs) return <p className="text-white text-center">Loading...</p>;
+    
+  return (
+    <Layout header={2} footer={5} video={0}>
+      <BlogSingleBanner  />
+      <BlogDetailsMain blogs={blogs} />
+    </Layout>
+  );
+};
+
+export default BlogDetais;

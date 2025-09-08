@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import blogthumb from "public/images/offer/blog-thumb.png";
@@ -6,6 +6,7 @@ import two from "public/images/offer/two.png";
 import three from "public/images/offer/three.png";
 import four from "public/images/offer/four.png";
 import star from "public/images/offer/star.png";
+import { toast } from "react-toastify";
 
 const HomeOffer = () => {
   useEffect(() => {
@@ -31,6 +32,22 @@ const HomeOffer = () => {
     };
   }, []);
 
+  const [ourService, setOurServices] = useState<any[]>([]);
+
+  const fetchService = async () => {
+    try {
+      const recent = await fetch("http://localhost:4000/api/services").then(
+        (res) => res.json()
+      );
+      setOurServices(recent.services);
+    } catch (err) {
+      toast.error("Error fetching Services");
+    }
+  };
+  useEffect(() => {
+    fetchService();
+  }, []);
+
   return (
     <section className="section offer fade-wrapper light">
       <div className="container">
@@ -46,9 +63,9 @@ const HomeOffer = () => {
               </h2>
               <div className="paragraph">
                 <p>
-                Bring to the table win-win survival strategies to ensure
-                  Game-Changing strategies leading brands toward a smarter, Intelligent Transformation.
-            
+                  Bring to the table win-win survival strategies to ensure
+                  Game-Changing strategies leading brands toward a smarter,
+                  Intelligent Transformation.
                 </p>
               </div>
               <div className="section__content-cta">
@@ -60,14 +77,14 @@ const HomeOffer = () => {
           </div>
           <div className="col-12 col-lg-7 col-xl-6 offset-xl-1">
             <div className="offer__cta">
-              <div className="offer__cta-single fade-top">
+              {/* <div className="offer__cta-single fade-top">
                 <span className="sub-title">
                   01
                   <i className="fa-solid fa-arrow-right"></i>
                 </span>
                 <h2>
                   <Link href="service-single">
-                    modern uI / uX 
+                    Web
                     <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
                   </Link>
                 </h2>
@@ -75,6 +92,7 @@ const HomeOffer = () => {
                   <Image src={blogthumb} alt="Image" />
                 </div>
               </div>
+
               <div className="offer__cta-single fade-top">
                 <span className="sub-title">
                   02
@@ -89,23 +107,27 @@ const HomeOffer = () => {
                 <div className="offer-thumb-hover d-none d-md-block">
                   <Image src={two} alt="Image" />
                 </div>
-              </div>
-              <div className="offer__cta-single fade-top">
-                <span className="sub-title">
-                  03
-                  <i className="fa-solid fa-arrow-right"></i>
-                </span>
-                <h2>
-                  <Link href="service-single">
-                  Artificial Intelligence
-                    <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                  </Link>
-                </h2>
-                <div className="offer-thumb-hover d-none d-md-block">
-                  <Image src={three} alt="Image" />
-                </div>
-              </div>
-              
+              </div> */}
+              {ourService.map((service) => (
+                
+                <>
+                  <div className="offer__cta-single fade-top">
+                    <span className="sub-title">
+                      {service.length}
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </span>
+                    <h2>
+                      <Link href={`/service-single/${service._id}`}>
+                        {service.title}
+                        <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
+                      </Link>
+                    </h2>
+                    <div className="offer-thumb-hover d-none d-md-block">
+                      <Image src={service.smallImages.url} width={100} height={100} alt="Image" />
+                    </div>
+                  </div>
+                </>
+              ))}
             </div>
           </div>
         </div>

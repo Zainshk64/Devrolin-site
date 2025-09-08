@@ -207,6 +207,13 @@
   visibility: visible;
   transform: translateY(0);
 }
+.hover-translate {
+  transition: transform 0.3s ease;
+}
+
+.hover-translate:hover {
+  transform: translateY(-5px);
+}
 
 //  video modal button
 .video-modal-btn {

@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import one from "public/images/teams/one.png";
 
 gsap.registerPlugin(ScrollTrigger);
-const TeamDetailsMain = () => {
+const TeamDetailsMain = ({ member }) => {
   useEffect(() => {
     const percentElements = document.querySelectorAll("[data-percent]");
 
@@ -74,31 +74,28 @@ const TeamDetailsMain = () => {
     <section className="section pb-0 team-det fade-wrapper">
       <div className="container">
         <div className="row gaper">
-          <div className="col-12 col-lg-5 col-xxl-4">
+          <div className="col-12  col-lg-5 col-xxl-4">
             <div className="team-det__thumb fade-top">
-              <Image src={one} alt="Image" />
+              <Image
+                src={member.image?.url}
+                width={300}
+                height={200}
+                alt="Image"
+              />
               <div className="social-alt">
-                <Link
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  aria-label="share us on facebook"
-                >
-                  <i className="fa-brands fa-facebook-f"></i>
-                </Link>
-                <Link
-                  href="https://www.twitter.com/"
-                  target="_blank"
-                  aria-label="share us on twitter"
-                >
-                  <i className="fa-brands fa-twitter"></i>
-                </Link>
-                <Link
-                  href="https://www.pinterest.com/"
-                  target="_blank"
-                  aria-label="share us on pinterest"
-                >
-                  <i className="fa-brands fa-linkedin-in"></i>
-                </Link>
+                {member.socials.map((social: any, i: number) => (
+                  <div className="">
+                    <Link
+                      href={social.url}
+                      target="_blank"
+                      aria-label="share us on facebook"
+                      className=""
+                    >
+                      {/* <i className="fa-brands fa-facebook-f"></i> */}
+                      <p className="text-capitalize">{social.social}</p>
+                    </Link>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -106,8 +103,8 @@ const TeamDetailsMain = () => {
             <div className="team-det__content fade-top">
               <div className="intro">
                 <div className="intro-left">
-                  <h4>Sana p. Lesh</h4>
-                  <p>Senior engineer</p>
+                  <h4>{member.name}</h4>
+                  <p>{member.jobTitle}</p>
                 </div>
                 <div className="intro-right">
                   <Link href="contact-us" className="btn btn--primary">
@@ -118,23 +115,45 @@ const TeamDetailsMain = () => {
               </div>
               <div className="content">
                 <h5>About Me</h5>
-                <p>
-                  Proin ultricies ultricies est vitae cursus. Nulla sit amet
-                  suscipit tortor. Maecenas dui erat, ornare eget tristique
-                  vitae, rutrum pretium justo. Phasellus vitae consequat nisi,
-                  quis luctus nisl. Praesent faucibus sem id massa semper
-                  ornare. Nam eu magna at mi pellentesque mattis. Morbi at
-                  condimentum velit. Phasellus aliquet, leo auctor volutpat
-                  ultrices, metus dolor dictum enim, sed convallis lacus urna
-                  nec erat.
-                </p>
+                <p>{member.aboutMe}</p>
               </div>
               <div className="skill-wrap">
+                {member.skills.map((social: any, i: number) => (
+                  <>
+                    <div className="skill-bar-single">
+                      <div className="skill-bar-title">
+                        <p>{social.name}</p>
+                      </div>
+                      <div
+                        className="skill-bar-wrapper"
+                        data-percent={`${social.proficiency}%`}
+                      >
+                        <div className="skill-bar">
+                          <div className="skill-bar-percent">
+                            <span className="percent-value"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+                {/* <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p>Visual Design</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="90%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="skill-bar-single">
                   <div className="skill-bar-title">
                     <p>Wireframe</p>
                   </div>
-                  <div className="skill-bar-wrapper" data-percent="75%">
+                  <div className="skill-bar-wrapper" data-percent="60%">
                     <div className="skill-bar">
                       <div className="skill-bar-percent">
                         <span className="percent-value"></span>
@@ -153,31 +172,7 @@ const TeamDetailsMain = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="skill-bar-single">
-                  <div className="skill-bar-title">
-                    <p>Wireframe</p>
-                  </div>
-                  <div className="skill-bar-wrapper" data-percent="75%">
-                    <div className="skill-bar">
-                      <div className="skill-bar-percent">
-                        <span className="percent-value"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="skill-bar-single">
-                  <div className="skill-bar-title">
-                    <p>Visual Design</p>
-                  </div>
-                  <div className="skill-bar-wrapper" data-percent="90%">
-                    <div className="skill-bar">
-                      <div className="skill-bar-percent">
-                        <span className="percent-value"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -186,38 +181,17 @@ const TeamDetailsMain = () => {
           <div className="col-12">
             <div className="team-det__info fade-top">
               <h4>Education background</h4>
-              <div className="group">
-                <h5>
-                  Bachelor&apos;s degree,
-                  <span>2010</span>
-                </h5>
-                <p>
-                  Proin ultricies ultricies est vitae cursus. Nulla sit amet
-                  suscipit tortor. Maecenas dui erat, ornare eget tristique
-                  vitae, rutrum pretium justo. Phasellus vitae consequat nisi,
-                  quis luctus nisl. Praesent faucibus sem id massa semper
-                  ornare. Nam eu magna at mi pellentesque mattis. Morbi at
-                  condimentum velit. Phasellus aliquet, leo auctor volutpat
-                  ultrices, metus dolor dictum enim, sed convallis lacus urna
-                  nec erat.
-                </p>
-              </div>
-              <div className="group">
-                <h5>
-                  Master&apos;s degree in design,
-                  <span>2015</span>
-                </h5>
-                <p>
-                  Proin ultricies ultricies est vitae cursus. Nulla sit amet
-                  suscipit tortor. Maecenas dui erat, ornare eget tristique
-                  vitae, rutrum pretium justo. Phasellus vitae consequat nisi,
-                  quis luctus nisl. Praesent faucibus sem id massa semper
-                  ornare. Nam eu magna at mi pellentesque mattis. Morbi at
-                  condimentum velit. Phasellus aliquet, leo auctor volutpat
-                  ultrices, metus dolor dictum enim, sed convallis lacus urna
-                  nec erat.
-                </p>
-              </div>
+              {member.education.map((edu: any, i: number) => (
+                <>
+                  <div className="group">
+                    <h5>
+                      {edu.degree}
+                      <span> {edu.year}</span>
+                    </h5>
+                    <p>{edu.description}</p>
+                  </div>
+                </>
+              ))}
             </div>
           </div>
         </div>

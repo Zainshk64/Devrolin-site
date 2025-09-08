@@ -157,8 +157,6 @@ const ContactMain = () => {
                           <option value="" disabled selected>Subject</option>
                           <option value="Design & Development">Design & Development</option>
                           <option value="AI Solutions">AI Brilliance</option>
-                          {/* <option value="Deployment & Customer Support">Deployment & Customer Support</option> */}
-                          {/* <option value="Technical Support">Technical Support</option> */}
                         </select>
                       </div>
                       <div className="group-input">

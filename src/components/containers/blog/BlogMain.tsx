@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import YoutubeEmbed from "@/components/youtube/YoutubeEmbed";
@@ -9,9 +9,27 @@ import eleven from "public/images/news/eleven.png";
 import twelve from "public/images/news/twelve.png";
 import thirteen from "public/images/news/thirteen.png";
 import fourteen from "public/images/news/fourteen.png";
+import { toast } from "react-toastify";
+import moment from "moment";
 
 const BlogMain = () => {
   const [videoActive, setVideoActive] = useState(false);
+  const [recentBlogs, setRecentBlogs] = useState<any[]>([]);
+
+  const fetchBlogs = async () => {
+    try {
+      const recent = await fetch("http://localhost:4000/api/blogs/recent").then(
+        (res) => res.json()
+      );
+      setRecentBlogs(recent);
+    } catch (err) {
+      toast.error("Error fetching blogs");
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
   return (
     <>
       <section className="section blog-main fade-wrapper">
@@ -19,48 +37,51 @@ const BlogMain = () => {
           <div className="row gaper">
             <div className="col-12 col-xl-8">
               <div className="blog-main__content">
-                <div className="blog-main__single fade-top">
-                  <div className="thumb">
-                    <div className="thumb-link ">
-                      <Link href="blog-single">
-                        <Image src={eight} alt="Image" />
-                      </Link>
-                    </div>
-                    <div className="meta">
-                      <div className="meta__left">
-                        <p>
-                          <strong>Written by :</strong>
-                          Marry biden
-                        </p>
-                        <span></span>
-                        <p>10/01/2023</p>
+                {recentBlogs.slice(1, 3).map((blog: any) => (
+                  <div className="blog-main__single fade-top">
+                    <div className="thumb">
+                      <div className="thumb-link ">
+                        <Link href={`blog-single/${blog._id}`}>
+                          <Image
+                            src={blog.mainImage?.url}
+                            height={470}
+                            width={869}
+                            alt="Image"
+                          />
+                        </Link>
                       </div>
-                      <div className="meta__right">
-                        <Link href="blog">Nature</Link>
-                        <Link href="blog">Health</Link>
+                      <div className="meta">
+                        <div className="meta__left">
+                          <p>
+                            <strong>Written by : </strong>
+                            {blog.author}
+                          </p>
+                          <span></span>
+                          <p>{moment(blog.createdAt).format("MMMM D, YYYY")}</p>
+                        </div>
+                        <div className="meta__right">
+                          <Link href="blog">Nature</Link>
+                          <Link href="blog">Health</Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="content ">
+                      <h4 className="h4">
+                        <Link href={`blog-single/${blog._id}`}>
+                          {blog.title ||
+                            "Guide dog shortage: The blind people who train their"}
+                        </Link>
+                      </h4>
+                      <p>{blog.description}</p>
+                      <div className="cta">
+                        <Link href={`blog-single/${blog._id}`}>
+                          <i className="fa-sharp fa-regular fa-arrow-right"></i>
+                        </Link>
                       </div>
                     </div>
                   </div>
-                  <div className="content ">
-                    <h4 className="h4">
-                      <Link href="blog-single">
-                        Guide dog shortage: The blind people who train their
-                      </Link>
-                    </h4>
-                    <p>
-                      Daily Star News published on Feb 2nd, 2022, Sangbad
-                      Protidin dated January 31st, 2022 and HRCBM&apos;s
-                      investigation. Bangladesh again witnessing uptick in
-                      violence against minorities in the country.
-                    </p>
-                    <div className="cta">
-                      <Link href="blog-single">
-                        <i className="fa-sharp fa-regular fa-arrow-right"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                <div className="blog-main__single fade-top">
+                ))}
+                {/* <div className="blog-main__single fade-top">
                   <div className="thumb">
                     <div className="thumb-link ">
                       <Link href="blog-single">
@@ -109,7 +130,7 @@ const BlogMain = () => {
                       </Link>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="blog-main__single fade-top">
                   <div className="thumb">
                     <div className="thumb-radio ">
@@ -152,14 +173,10 @@ const BlogMain = () => {
                       investigation. Bangladesh again witnessing uptick in
                       violence against minorities in the country.
                     </p>
-                    <div className="cta">
-                      <Link href="blog-single">
-                        <i className="fa-sharp fa-regular fa-arrow-right"></i>
-                      </Link>
-                    </div>
+                   
                   </div>
                 </div>
-                <div className="pagination-wrapper">
+                {/* <div className="pagination-wrapper">
                   <ul className="pagination">
                     <li>
                       <Link href="blog">01</Link>
@@ -178,7 +195,7 @@ const BlogMain = () => {
                       </button>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="col-12 col-xl-4">
@@ -210,25 +227,13 @@ const BlogMain = () => {
                   <div className="widget__list">
                     <ul>
                       <li>
-                        <Link href="blog">Business</Link>
+                        <Link href="blog">UI/UX Design</Link>
                       </li>
                       <li>
-                        <Link href="blog">Job Market</Link>
+                        <Link href="blog">Web Development</Link>
                       </li>
                       <li>
-                        <Link href="blog">Marketing</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">News</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">Social Media</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">Trends</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">Writing</Link>
+                        <Link href="blog">AI Brilliace</Link>
                       </li>
                     </ul>
                   </div>
@@ -238,23 +243,27 @@ const BlogMain = () => {
                     <h5 className="h5">Recent Posts</h5>
                   </div>
                   <div className="widget__latest">
-                    <div className="latest-single ">
-                      <div className="latest-thumb">
-                        <Link href="blog-single">
-                          <Image src={ten} alt="Image" />
-                        </Link>
-                      </div>
-                      <div className="latest-content">
-                        <p>10/01/2023</p>
-                        <p>
-                          <Link href="blog-single">
-                            Guide dog shortage: The blind peo ple who train
-                            their own guide
+                    {recentBlogs.map((blog: any) => (
+                      <div className="latest-single ">
+                        <div className="latest-thumb">
+                          <Link href={`blog-single/${blog._id}`}>
+                            <Image
+                              src={blog.mainImage?.url}
+                              width={100}
+                              height={100}
+                              alt="Image"
+                            />
                           </Link>
-                        </p>
+                        </div>
+                        <div className="latest-content">
+                          <p>{moment(blog.createdAt).format("MMMM D, YYYY")}</p>
+                          <p>
+                            <Link href={`blog-single/${blog._id}`}>{blog.title}</Link>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="latest-single ">
+                    ))}
+                    {/* <div className="latest-single ">
                       <div className="latest-thumb">
                         <Link href="blog-single">
                           <Image src={eleven} alt="Image" />
@@ -301,7 +310,7 @@ const BlogMain = () => {
                           </Link>
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="widget ">
@@ -340,11 +349,11 @@ const BlogMain = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="widget widget-big ">
+                {/* <div className="widget widget-big ">
                   <Link href="blog-single">
                     <Image src={fourteen} alt="Image" />
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
