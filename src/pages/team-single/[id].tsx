@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Layout from '@/components/layout/Layout';
 
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import CmnBanner from '@/components/layout/banner/CmnBanner';
 import TeamDetailsMain from '@/components/containers/TeamDetailsMain';
 import CtaTwo from '@/components/containers/service-details/CtaTwo';

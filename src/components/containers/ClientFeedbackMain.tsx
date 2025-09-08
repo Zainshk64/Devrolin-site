@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import avatar from "public/images/testimonial/avatar.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const ClientFeedbackMain = () => {
     const [testimonials, setTestimonials] = useState<any[]>([]);

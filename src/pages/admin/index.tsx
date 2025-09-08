@@ -2,7 +2,7 @@ import AdminLayout from '@/components/layout/AdminLayout';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function AdminDashboard() {
   useAdminAuth();

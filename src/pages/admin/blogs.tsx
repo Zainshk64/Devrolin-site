@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AdminLayout from "@/components/layout/AdminLayout";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import Head from "next/head";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import moment from "moment";
 
 const AdminBlogs = () => {

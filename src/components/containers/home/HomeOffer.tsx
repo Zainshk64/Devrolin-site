@@ -6,7 +6,7 @@ import two from "public/images/offer/two.png";
 import three from "public/images/offer/three.png";
 import four from "public/images/offer/four.png";
 import star from "public/images/offer/star.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const HomeOffer = () => {
   useEffect(() => {

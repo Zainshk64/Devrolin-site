@@ -7,7 +7,7 @@ import "swiper/swiper-bundle.css";
 import sthumb from "public/images/testimonial/s-thumb.png";
 import sthumbtwo from "public/images/testimonial/s-thumb-two.png";
 import sthumbthree from "public/images/testimonial/s-thumb-three.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const HomeTestimonial = () => {
   const [nextSlideIndex, setNextSlideIndex] = useState<number>(1);

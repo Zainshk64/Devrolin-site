@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import one from "public/images/blog/one.png";
 import two from "public/images/blog/two.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import moment from "moment";
 
 const HomeBlog = () => {

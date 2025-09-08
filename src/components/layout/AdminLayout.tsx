@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const tabs = [
   { name: "Dashboard", href: "/admin" },

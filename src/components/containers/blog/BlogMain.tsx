@@ -9,7 +9,7 @@ import eleven from "public/images/news/eleven.png";
 import twelve from "public/images/news/twelve.png";
 import thirteen from "public/images/news/thirteen.png";
 import fourteen from "public/images/news/fourteen.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import moment from "moment";
 
 const BlogMain = () => {

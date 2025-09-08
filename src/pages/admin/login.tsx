@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '@/components/layout/Layout';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const AdminLogin = () => {
   const router = useRouter();

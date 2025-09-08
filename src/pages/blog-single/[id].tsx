@@ -3,7 +3,7 @@ import BlogSingleBanner from "@/components/layout/banner/BlogSingleBanner";
 import Layout from "@/components/layout/Layout";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const BlogDetais = () => {
      const { id } = useRouter().query;

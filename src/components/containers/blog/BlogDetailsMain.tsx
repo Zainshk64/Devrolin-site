@@ -10,7 +10,7 @@ import twelve from "public/images/news/twelve.png";
 import thirteen from "public/images/news/thirteen.png";
 import fourteen from "public/images/news/fourteen.png";
 import moment from "moment";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const BlogDetailsMain = ({ blogs }) => {
   const [recentBlogs, setRecentBlogs] = useState<any[]>([]);

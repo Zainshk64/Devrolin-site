@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import type { AppProps } from "next/app";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 // bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Component {...pageProps} />
-      <ToastContainer position="top-center" />
+      <Toaster position="bottom-left" />
 
     </Suspense>
   );

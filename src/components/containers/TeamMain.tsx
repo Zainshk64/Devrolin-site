@@ -7,7 +7,7 @@ import three from "public/images/teams/three.png";
 import four from "public/images/teams/four.png";
 import five from "public/images/teams/five.png";
 import six from "public/images/teams/six.png";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const TeamMain = () => {
   const [members, setMembers] = useState<any[]>([]);

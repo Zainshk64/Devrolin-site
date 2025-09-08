@@ -5,7 +5,7 @@ import ServiceDetailsBanner from "@/components/layout/banner/ServiceDetailsBanne
 import UxProcess from "@/components/containers/service-details/UxProcess";
 import CtaTwo from "@/components/containers/service-details/CtaTwo";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const ServiceDetails = () => {
     const { id } = useRouter().query;
