@@ -11,7 +11,7 @@ const AdminBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const recent = await fetch("http://localhost:4000/api/blogs/recent").then(
+      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/blogs/recent").then(
         (res) => res.json()
       );
       setRecentBlogs(recent);
@@ -96,7 +96,7 @@ const AdminBlogs = () => {
     });3
 
     try {
-      const res = await fetch("http://localhost:4000/api/admin/new-blog", {
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-blog", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -135,7 +135,7 @@ const AdminBlogs = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/api/admin/delete-blog/${Id}`,
+        `https://pleasing-consideration-production.up.railway.app/api/admin/delete-blog/${Id}`,
         {
           method: "DELETE",
           headers: {

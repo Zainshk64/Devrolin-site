@@ -20,7 +20,7 @@ export default function TestimonialsPage() {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/testimonials/');
+      const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/testimonials/');
       const data = await res.json();
       setTestimonials(data);
       // console.log(data);
@@ -36,7 +36,7 @@ export default function TestimonialsPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/api/admin/delete-testimonial/${Id}`,
+        `https://pleasing-consideration-production.up.railway.app/api/admin/delete-testimonial/${Id}`,
         {
           method: "DELETE",
           headers: {
@@ -90,7 +90,7 @@ export default function TestimonialsPage() {
     fd.append('image', image);
 
     try {
-      const res = await fetch('http://localhost:4000/api/admin/new-testimonial', {
+      const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/admin/new-testimonial', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

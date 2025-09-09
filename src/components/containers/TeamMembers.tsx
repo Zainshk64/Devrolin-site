@@ -18,7 +18,7 @@ const TeamMembers = () => {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/members/");
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/members/");
       const data = await res.json();
       setMembers(data.members || []);
       // console.log(data.members);
@@ -124,7 +124,7 @@ const TeamMembers = () => {
                             <Link href={`/team-single/${item._id}`}>{item.name}</Link>
                           </h4>
                           <p>{item.job}</p>
-                          {/* <div className="social-alt">
+                          <div className="social-alt">
                             <Link
                               href="https://www.facebook.com/"
                               target="_blank"
@@ -146,7 +146,7 @@ const TeamMembers = () => {
                             >
                               <i className="fa-brands fa-linkedin-in"></i>
                             </Link>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                       <div className="content">
@@ -159,7 +159,7 @@ const TeamMembers = () => {
                         <hr />
                         <div className="inner">
                           <p>{item.description}</p>
-                          {/* <div className="skill-wrap">
+                          <div className="skill-wrap">
                             <div className="skill-bar-single">
                               <div className="skill-bar-title">
                                 <p>Wireframe</p>
@@ -190,7 +190,7 @@ const TeamMembers = () => {
                                 </div>
                               </div>
                             </div>
-                          </div> */}
+                          </div>
                           <p>{item.aboutMe}</p>
                         </div>
                         <div className="socials mt-4">
@@ -205,7 +205,7 @@ const TeamMembers = () => {
                               <p className="text-capitalize ">{social.social}</p>
                             </Link>
                           ))}
-                          {/* <Link
+                          <Link
                             href="https://www.facebook.com/"
                             target="_blank"
                             aria-label="share us on facebook"
@@ -226,7 +226,7 @@ const TeamMembers = () => {
                             aria-label="share us on instagram"
                           >
                             <i className="fa-brands fa-instagram"></i>
-                          </Link> */}
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ const TeamMembers = () => {
                 No testimonials found.
               </p>
             )}
-            {/* <SwiperSlide>
+            <SwiperSlide>
               <div className="team-s__slider-single">
                 <div className="team-wrap">
                   <div className="thumb">
@@ -987,7 +987,7 @@ const TeamMembers = () => {
                   </div>
                 </div>
               </div>
-            </SwiperSlide> */}
+            </SwiperSlide>
           </Swiper>
         </div>
         <div className="slide-group">

@@ -12,7 +12,7 @@ export default function ProjectDetailsPage() {
 
   const fetchProject = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/projects/${id}`);
+      const res = await fetch(`https://pleasing-consideration-production.up.railway.app/api/projects/${id}`);
       const data = await res.json();
       setProject(data);
     } catch (err) {

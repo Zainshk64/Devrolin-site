@@ -27,7 +27,7 @@ export default function Teams() {
   // Fetch Members
   const fetchMembers = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/members/");
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/members/");
       const data = await res.json();
       setMembers(data.members || []);
       // console.log(data.members);
@@ -84,7 +84,7 @@ export default function Teams() {
     fd.append("education", JSON.stringify(form.education));
 
     try {
-      const res = await fetch("http://localhost:4000/api/admin/new-member", {
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-member", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: fd,

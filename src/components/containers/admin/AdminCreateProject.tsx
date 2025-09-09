@@ -65,7 +65,7 @@ export default function AdminCreateProject({ onProjectAdded }) {
     });
 
     try {
-      const res = await fetch("http://localhost:4000/api/admin/new-project", {
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-project", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

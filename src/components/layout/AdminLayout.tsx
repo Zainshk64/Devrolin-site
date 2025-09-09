@@ -20,7 +20,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     const token = localStorage.getItem('adminToken');
 
     try {
-      const res = await fetch('http://localhost:4000/api/admin/logout', {
+      const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/admin/logout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

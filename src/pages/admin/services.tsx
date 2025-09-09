@@ -37,7 +37,7 @@ const AdminServices = () => {
     if (form.smallImage) fd.append("smallImages", form.smallImage); // only one smallImage
 
     try {
-      const res = await fetch("http://localhost:4000/api/admin/new-service", {
+      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-service", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ const AdminServices = () => {
 
   const fetchService = async () => {
     try {
-      const recent = await fetch("http://localhost:4000/api/services").then(
+      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/services").then(
         (res) => res.json()
       );
       setOurServices(recent.services);
@@ -83,7 +83,7 @@ const AdminServices = () => {
   
       try {
         const res = await fetch(
-          `http://localhost:4000/api/admin/delete-service/${Id}`,
+          `https://pleasing-consideration-production.up.railway.app/api/admin/delete-service/${Id}`,
           {
             method: "DELETE",
             headers: {

@@ -28,7 +28,7 @@ const BlogDetailsMain = ({ blogs }) => {
 
   const fetchBlogs = async () => {
     try {
-      const recent = await fetch("http://localhost:4000/api/blogs/recent").then(
+      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/blogs/recent").then(
         (res) => res.json()
       );
       setRecentBlogs(recent);
@@ -42,7 +42,7 @@ const BlogDetailsMain = ({ blogs }) => {
       return toast.warn("Fill all fields");
     try {
       const res = await fetch(
-        `http://localhost:4000/api/blogs/${blogs._id}/comments`,
+        `https://pleasing-consideration-production.up.railway.app/api/blogs/${blogs._id}/comments`,
         {
           method: "POST",
           headers: {

@@ -14,7 +14,7 @@ export default function TeamMemberPage() {
 
   const fetchMember = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/members/${id}`);
+      const res = await fetch(`https://pleasing-consideration-production.up.railway.app/api/members/${id}`);
       const data = await res.json();
       setMember(data);
     } catch (err) {

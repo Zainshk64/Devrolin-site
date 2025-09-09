@@ -8,7 +8,7 @@ const ClientFeedbackMain = () => {
   
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/testimonials/");
+        const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/testimonials/");
         const data = await res.json();
         setTestimonials(data);
       } catch (err) {

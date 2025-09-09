@@ -12,7 +12,7 @@ const OurProjects = () => {
     const fetchProjects = async () => {
       const token = localStorage.getItem('adminToken');
       try {
-        const res = await fetch('http://localhost:4000/api/projects/', {
+        const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/projects/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
