@@ -3,7 +3,7 @@ import Image from "next/image";
 import thumbone from "public/images/service/thumb-one.png";
 import thumbtwo from "public/images/service/thumb-two.webp";
 
-const ServiceDetailsMain = ({mainService}) => {
+const ServiceDetailsMain = ({ mainService }: { mainService: any }) => {
   return (
     <section className="section service-details fade-wrapper">
       <div className="container">

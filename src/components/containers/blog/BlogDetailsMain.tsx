@@ -12,7 +12,7 @@ import fourteen from "public/images/news/fourteen.png";
 import moment from "moment";
 import { toast } from "react-hot-toast";
 
-const BlogDetailsMain = ({ blogs }) => {
+const BlogDetailsMain = ({ blogs }: { blogs: any }) => {
   const [recentBlogs, setRecentBlogs] = useState<any[]>([]);
   const [commentForm, setCommentForm] = useState({
     name: "",

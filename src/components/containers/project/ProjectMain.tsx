@@ -11,7 +11,7 @@ import hrfive from "public/images/projects/hr-five.png";
 import hrsix from "public/images/projects/hr-six.png";
 
 gsap.registerPlugin(ScrollTrigger);
-const ProjectMain = ({ projects }) => {
+const ProjectMain = ({ projects }: { projects: any }) => {
   const slider = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const ProjectMain = ({ projects }) => {
   return (
     <section className="section project-sl" ref={slider}>
       {/* {projects.length > 0 ? ( */}
-      {projects.map((project) => (
+      {projects.map((project: any) => (
         <div key={project._id} className="project-sl__single">
           <div className="thumb">
             <Link href={`/project-single/${project._id}`}>

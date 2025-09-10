@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const ServiceDetailsBanner = ({mainService}) => {
+const ServiceDetailsBanner = ({ mainService }: { mainService: any }) => {
   return (
     <section
       className="cmn-banner service-single-banner bg-img"

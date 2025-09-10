@@ -13,7 +13,7 @@ import dthree from "public/images/projects/d-three.png";
 import dfour from "public/images/projects/d-four.png";
 import dfive from "public/images/projects/d-five.png";
 
-const ProjectDetailsMain = ({ project }) => {
+const ProjectDetailsMain = ({ project }: { project: any }) => {
   return (
     <section className="section project-d">
       <div className="container">
@@ -194,7 +194,7 @@ const ProjectDetailsMain = ({ project }) => {
             </div>
           </div>
         </div>
-        {project.testimonial.map((test)=>(
+        {project.testimonial.map((test: any)=>(
 
         <div className="row">
           <div className="col-12">
@@ -271,7 +271,7 @@ const ProjectDetailsMain = ({ project }) => {
               <Image src={done} alt="Image" />
             </div>
           </SwiperSlide>
-        {project.snapshots.map((snap)=>(
+        {project.snapshots.map((snap: any)=>(
           <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={snap.url} height={200} width={200} alt={snap.alt} />
