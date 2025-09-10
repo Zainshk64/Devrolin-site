@@ -1,35 +1,36 @@
-import AdminLayout from '@/components/layout/AdminLayout';
-import { useAdminAuth } from '@/hooks/useAdminAuth';
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import AdminLayout from "@/components/layout/AdminLayout";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function TestimonialsPage() {
   useAdminAuth();
 
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [form, setForm] = useState({
-    name: '',
-    feedback: '',
-    job: '',
+    name: "",
+    feedback: "",
+    job: "",
   });
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const token = localStorage.getItem('adminToken');
+  const token = localStorage.getItem("adminToken");
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/testimonials/');
+      const res = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/testimonials/"
+      );
       const data = await res.json();
       setTestimonials(data);
       // console.log(data);
-      
     } catch (err) {
-      toast.error('Failed to fetch testimonials');
+      toast.error("Failed to fetch testimonials");
     }
   };
-    const handleTestDelete = async (Id: string) => {
+  const handleTestDelete = async (Id: string) => {
     const token = localStorage.getItem("adminToken");
 
     // console.log(Id);
@@ -49,7 +50,9 @@ export default function TestimonialsPage() {
 
       if (res.ok) {
         toast.success("Testimonials deleted!");
-        setTestimonials((prev) => prev.filter((testimonials) => testimonials._id !== Id));
+        setTestimonials((prev) =>
+          prev.filter((testimonials) => testimonials._id !== Id)
+        );
       } else {
         toast.error(data.message || "Failed to delete testimonial");
       }
@@ -58,12 +61,13 @@ export default function TestimonialsPage() {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchTestimonials();
-  },[])
+  }, []);
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -79,38 +83,41 @@ export default function TestimonialsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.feedback || !form.job || !image) {
-      toast.warning("fill all fields and upload an image");
+      toast.error("fill all fields and upload an image");
       return;
     }
 
     const fd = new FormData();
-    fd.append('name', form.name);
-    fd.append('feedback', form.feedback);
-    fd.append('job', form.job.trim());
-    fd.append('image', image);
+    fd.append("name", form.name);
+    fd.append("feedback", form.feedback);
+    fd.append("job", form.job.trim());
+    fd.append("image", image);
 
     try {
-      const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/admin/new-testimonial', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: fd,
-      });
+      const res = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/admin/new-testimonial",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: fd,
+        }
+      );
 
       const data = await res.json();
 
       if (res.ok) {
-        toast.success('Testimonial added');
-        setForm({ name: '', feedback: '', job: '' });
+        toast.success("Testimonial added");
+        setForm({ name: "", feedback: "", job: "" });
         setImage(null);
         setImagePreview(null);
         fetchTestimonials();
       } else {
-        toast.error(data.message || 'Failed to add testimonial');
+        toast.error(data.message || "Failed to add testimonial");
       }
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error("Something went wrong");
     }
   };
 
@@ -118,7 +125,10 @@ export default function TestimonialsPage() {
     <>
       <Head>
         <title>Admin Testimonials</title>
-        <meta name="description" content="The official Next.js Admin Dashboard" />
+        <meta
+          name="description"
+          content="The official Next.js Admin Dashboard"
+        />
       </Head>
 
       <AdminLayout>
@@ -157,7 +167,11 @@ export default function TestimonialsPage() {
             </div>
             <div className="col-12">
               <label className="form-label text-white">Image</label>
-              <input type="file" className="form-control p-3" onChange={handleImageChange} />
+              <input
+                type="file"
+                className="form-control p-3"
+                onChange={handleImageChange}
+              />
               {imagePreview && (
                 <img
                   src={imagePreview}
@@ -179,27 +193,42 @@ export default function TestimonialsPage() {
             {testimonials.length > 0 ? (
               testimonials.map((item) => (
                 <div key={item._id} className="col-md-6 col-lg-4 mb-4">
-                  <div className="card position-relative bg-dark text-white h-100 border border-secondary">
+                  <div className="card bg-dark text-white h-100 border border-secondary position-relative">
+                    {/* Delete button (top-right corner) */}
+                    <button
+                      className="btn-secondary p-3 position-absolute top-0 end-0 m-2"
+                      onClick={() => handleTestDelete(item._id)}
+                    >
+                      <i class="fas fa-trash-alt    "></i>
+                    </button>
+
+                    {/* Avatar */}
                     <div className="text-center pt-4">
                       <img
                         src={item.image?.url}
-                        alt={item.image?.alt || 'testimonial'}
-                        className="rounded-circle"
-                        style={{ width: 100, height: 100, objectFit: 'cover' }}
+                        alt={item.image?.alt || "testimonial"}
+                        className="rounded-circle "
+                        style={{ width: 100, height: 100, objectFit: "contain" }}
                       />
                     </div>
 
-                    <button className='position-absolute end-0 p-2 mt-2  rounded bg-danger' onClick={()=> handleTestDelete(item._id)} >Delete</button>
+                    {/* Content */}
                     <div className="card-body text-center">
                       <h5 className="card-title">{item.name}</h5>
-                      {item.job && <p className="">{item.job}</p>}
-                      <p className="card-text text-secondary">"{item.feedback}"</p>
+                      {item.job && (
+                        <p className="text-muted mb-1">{item.job}</p>
+                      )}
+                      <p className="card-text text-secondary">
+                        "{item.feedback}"
+                      </p>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-white text-center mt-4">No testimonials found.</p>
+              <p className="text-white text-center mt-4">
+                No testimonials found.
+              </p>
             )}
           </div>
         </div>

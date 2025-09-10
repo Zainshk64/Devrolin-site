@@ -123,7 +123,7 @@ const HomeOffer = () => {
                       </Link>
                     </h2>
                     <div className="offer-thumb-hover d-none d-md-block">
-                      <Image src={service.smallImages.url} width={100} height={100} alt="Image" />
+                      <Image src={service.mainImage.url} width={100} height={100} alt="Image" />
                     </div>
                   </div>
                 </>

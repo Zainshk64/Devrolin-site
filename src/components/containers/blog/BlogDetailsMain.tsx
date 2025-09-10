@@ -39,7 +39,7 @@ const BlogDetailsMain = ({ blogs }) => {
   const handleBlogComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!commentForm.name || !commentForm.email || !commentForm.comment)
-      return toast.warn("Fill all fields");
+      return toast.error("Fill all fields");
     try {
       const res = await fetch(
         `https://pleasing-consideration-production.up.railway.app/api/blogs/${blogs._id}/comments`,
@@ -108,7 +108,7 @@ const BlogDetailsMain = ({ blogs }) => {
                 </div>
               </div>
               <div className="bd-group">
-                {blogs?.smallImages.map((blog: any) => (
+                {blogs?.smallImages?.map((blog: any) => (
                   <>
                     <Image
                       src={
@@ -135,16 +135,7 @@ const BlogDetailsMain = ({ blogs }) => {
                     ultrices, metus dolor dictum enim, sed convallis lacus urna
                     nec erat.
                   </p>
-                  <ul>
-                    <li>Mauris maximus diam ac imperdiet dictum.</li>
-                    <li>
-                      Maecenas eget ipsum dapibus, rutrum mi non, ultricies
-                      massa.
-                    </li>
-                    <li>Nam non purus porta risus tincidunt cursus.</li>
-                    <li>Quisque blandit lacus vel urna pellentesque mattis.</li>
-                    <li>Maecenas vehicula tortor et consectetur faucibus.</li>
-                  </ul>
+                 
                 </div>
               </div>
               <div className="bd-quote">

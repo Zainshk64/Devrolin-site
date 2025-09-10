@@ -11,7 +11,7 @@ import hrfive from "public/images/projects/hr-five.png";
 import hrsix from "public/images/projects/hr-six.png";
 
 gsap.registerPlugin(ScrollTrigger);
-const ProjectMain = ({projects}) => {
+const ProjectMain = ({ projects }) => {
   const slider = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,34 +46,31 @@ const ProjectMain = ({projects}) => {
     <section className="section project-sl" ref={slider}>
       {/* {projects.length > 0 ? ( */}
       {projects.map((project) => (
-
-
-      <div key={project._id} className="project-sl__single">
-        <div className="thumb">
-          <Link href={`/project-single/${project._id}`}>
-            <img
-                  src={project.mainImage?.url}
-                  className="card-img-top img-fluid"
-                  alt={project.mainImage?.alt || 'project'}
-                  style={{ height: 180, objectFit: 'cover' }}
-                />
-          </Link>
-        </div>
-        <div className="content">
-          <h2>
+        <div key={project._id} className="project-sl__single">
+          <div className="thumb">
             <Link href={`/project-single/${project._id}`}>
-             {project.title}
-              
+              <img
+                src={project.thumbnail?.url}
+                className="card-img-top img-fluid"
+                alt={project.mainImage?.alt || "project"}
+                style={{ height: 180, objectFit: "cover" }}
+              />
             </Link>
-          </h2>
+          </div>
+          <div className="content">
+            <h2>
+              <Link href={`/project-single/${project._id}`}>
+                {project.title}
+              </Link>
+            </h2>
+          </div>
         </div>
-      </div>
-            ))}
-        {/* </div>
+      ))}
+      {/* </div>
       ) : (
         <p className="text-white text-center mt-4">No projects found.</p>
       )} */}
-       <div className="project-sl__single">
+      <div className="project-sl__single">
         <div className="thumb">
           <Link href="project-single">
             <Image src={hrtwo} alt="Image" />

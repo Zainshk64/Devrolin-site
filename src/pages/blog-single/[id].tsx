@@ -14,6 +14,8 @@ const BlogDetais = () => {
           const res = await fetch(`https://pleasing-consideration-production.up.railway.app/api/blogs/${id}`);
           const data = await res.json();
           setBlogs(data);
+          console.log(data);
+          
         } catch (err) {
           toast.error("Failed to fetch details");
         }

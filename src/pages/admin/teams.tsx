@@ -36,6 +36,39 @@ export default function Teams() {
     }
   };
 
+
+    const handleTestDelete = async (Id: string) => {
+      const token = localStorage.getItem("adminToken");
+  
+      // console.log(Id);
+  
+      try {
+        const res = await fetch(
+          `https://pleasing-consideration-production.up.railway.app/api/admin/delete-members/${Id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        const data = await res.json();
+  
+        if (res.ok) {
+          toast.success("Member deleted!");
+          setMembers((prev) =>
+            prev.filter((members) => members._id !== Id)
+          );
+        } else {
+          toast.error(data.message || "Failed to delete member");
+        }
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
+    };
+  
+
   useEffect(() => {
     fetchMembers();
   }, []);
@@ -54,7 +87,7 @@ export default function Teams() {
     // if (form.education.length === 0 || !form.education[0].degree || !form.education[0].year) {
     //   return toast.warning("At least one education entry is required");
     // }
-    if (!image) return toast.warning("Image is required");
+    if (!image) return toast.error("Image is required");
 
     const fd = new FormData();
     fd.append("name", form.name);
@@ -417,7 +450,13 @@ export default function Teams() {
           <div className="row">
             {members.map((member) => (
               <div key={member._id} className="col-md-6 col-lg-4 mb-4">
-                <div className="card bg-dark text-white border border-secondary h-100 shadow-sm">
+                <div className="card bg-dark text-white border border-secondary position-relative h-100 shadow-sm">
+                  <button
+                      className="btn-secondary p-3 position-absolute top-0 end-0 m-2"
+                      onClick={() => handleTestDelete(member._id)}
+                    >
+                      <i class="fas fa-trash-alt    "></i>
+                    </button>
                   <div className="text-center pt-4">
                     <img
                       src={member.image?.url}

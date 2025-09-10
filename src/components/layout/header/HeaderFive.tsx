@@ -67,7 +67,7 @@ const HeaderFive = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                   </div>
                   <div className="navbar__menu">
                     <ul>
-                      <li className="navbar__item navbar__item--has-children nav-fade">
+                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
                         <button
                           aria-label="dropdown menu"
                           className="navbar__dropdown-label"
@@ -116,6 +116,10 @@ const HeaderFive = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                             </Link>
                           </li>
                         </ul>
+                      </li> */}
+                      <li className="navbar__item  nav-fade">
+                        <Link href="/" className="mx-3" >HOME</Link>
+
                       </li>
                       <li className="navbar__item nav-fade">
                         <Link href="about-us">About Us</Link>

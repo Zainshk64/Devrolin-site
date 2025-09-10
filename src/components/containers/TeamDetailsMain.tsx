@@ -83,7 +83,7 @@ const TeamDetailsMain = ({ member }) => {
                 alt="Image"
               />
               <div className="social-alt">
-                {member.socials.map((social: any, i: number) => (
+                {member?.socials?.map((social: any, i: number) => (
                   <div className="">
                     <Link
                       href={social.url}
@@ -107,7 +107,7 @@ const TeamDetailsMain = ({ member }) => {
                   <p>{member.jobTitle}</p>
                 </div>
                 <div className="intro-right">
-                  <Link href="contact-us" className="btn btn--primary">
+                  <Link href="/contact-us" className="btn btn--primary">
                     Hire Me
                     <i className="fa-sharp fa-solid fa-paper-plane"></i>
                   </Link>
@@ -118,7 +118,7 @@ const TeamDetailsMain = ({ member }) => {
                 <p>{member.aboutMe}</p>
               </div>
               <div className="skill-wrap">
-                {member.skills.map((social: any, i: number) => (
+                {member?.skills?.map((social: any, i: number) => (
                   <>
                     <div className="skill-bar-single">
                       <div className="skill-bar-title">
@@ -181,7 +181,7 @@ const TeamDetailsMain = ({ member }) => {
           <div className="col-12">
             <div className="team-det__info fade-top">
               <h4>Education background</h4>
-              {member.education.map((edu: any, i: number) => (
+              {member?.education?.map((edu: any, i: number) => (
                 <>
                   <div className="group">
                     <h5>

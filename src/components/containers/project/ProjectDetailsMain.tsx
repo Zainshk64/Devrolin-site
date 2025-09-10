@@ -13,7 +13,7 @@ import dthree from "public/images/projects/d-three.png";
 import dfour from "public/images/projects/d-four.png";
 import dfive from "public/images/projects/d-five.png";
 
-const ProjectDetailsMain = ({project}) => {
+const ProjectDetailsMain = ({ project }) => {
   return (
     <section className="section project-d">
       <div className="container">
@@ -21,10 +21,22 @@ const ProjectDetailsMain = ({project}) => {
           <div className="col-12 col-lg-6">
             <div className="project-d-group">
               <h3 className="light-title-lg">{project.title}</h3>
+              <p>{project.description}</p>
               <p>
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary
-
-There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form, by
+                injected humour, or randomised words which don't look even
+                slightly believable. If you are going to use a passage of Lorem
+                Ipsum, you need to be sure there isn't anything embarrassing
+                hidden in the middle of text. All the Lorem Ipsum generators on
+                the Internet tend to repeat predefined chunks as necessary There
+                are many variations of passages of Lorem Ipsum available, but
+                the majority have suffered alteration in some form, by injected
+                humour, or randomised words which don't look even slightly
+                believable. If you are going to use a passage of Lorem Ipsum,
+                you need to be sure there isn't anything embarrassing hidden in
+                the middle of text. All the Lorem Ipsum generators on the
+                Internet tend to repeat predefined chunks as necessary,
               </p>
             </div>
           </div>
@@ -69,7 +81,7 @@ There are many variations of passages of Lorem Ipsum available, but the majority
                 >
                   <SwiperSlide>
                     <div className="poster__slider-single">
-                      <img src={project.mainImage?.url} alt="Image" />
+                      <img src={project.thumbnail?.url} alt="Image" />
                     </div>
                   </SwiperSlide>
                   {/* <SwiperSlide>
@@ -153,8 +165,10 @@ There are many variations of passages of Lorem Ipsum available, but the majority
             <div className="project-d-o__single fade-top">
               <div className="content">
                 <h5>Project Date</h5>
-                <p>{new Date(project.startDate).toLocaleDateString('en')} -{' '}
-                    {new Date(project.endDate).toLocaleDateString('en')}</p>
+                <p>
+                  {new Date(project.startDate).toLocaleDateString("en")} -{" "}
+                  {new Date(project.endDate).toLocaleDateString("en")}
+                </p>
               </div>
               <div className="thumb">
                 <Image src={iconthree} alt="Image" />
@@ -166,9 +180,7 @@ There are many variations of passages of Lorem Ipsum available, but the majority
           <div className="col-12">
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">Project Description</h3>
-              <p>
-                {project.description}
-              </p>
+              <p>{project.description}</p>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
@@ -182,6 +194,8 @@ There are many variations of passages of Lorem Ipsum available, but the majority
             </div>
           </div>
         </div>
+        {project.testimonial.map((test)=>(
+
         <div className="row">
           <div className="col-12">
             <div className="quote-pj">
@@ -190,23 +204,23 @@ There are many variations of passages of Lorem Ipsum available, but the majority
                   <i className="fa-solid fa-quote-right"></i>
                 </div>
                 <blockquote className="secondary-text">
-                  And the day came when the risk to remain tight in a bud was
-                  more painful than the risk it took to blossom.
+                  {test.quote || "And the day came when the risk to remain tight in a bud wasmore painful than the risk it took to blossom." }
+
                 </blockquote>
               </div>
               <div className="author">
-                <h4>- BILLI REUSS</h4>
+                <h4> - {test.client}</h4>
               </div>
             </div>
           </div>
         </div>
+        ))}
+
         <div className="row">
           <div className="col-12">
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">The Result</h3>
-              <p>
-                {project.result}
-              </p>
+              <p>{project.result}</p>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
@@ -252,12 +266,20 @@ There are many variations of passages of Lorem Ipsum available, but the majority
           }}
           className="project-d__slider"
         >
-          <SwiperSlide>
+           <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={done} alt="Image" />
             </div>
           </SwiperSlide>
+        {project.snapshots.map((snap)=>(
           <SwiperSlide>
+            <div className="project-d__slider-single">
+              <Image src={snap.url} height={200} width={200} alt={snap.alt} />
+            </div>
+          </SwiperSlide>
+          ))}
+
+          {/* <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={dtwo} alt="Image" />
             </div>
@@ -276,13 +298,13 @@ There are many variations of passages of Lorem Ipsum available, but the majority
             <div className="project-d__slider-single">
               <Image src={dfive} alt="Image" />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={done} alt="Image" />
             </div>
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={dtwo} alt="Image" />
             </div>
@@ -301,7 +323,7 @@ There are many variations of passages of Lorem Ipsum available, but the majority
             <div className="project-d__slider-single">
               <Image src={dfive} alt="Image" />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={done} alt="Image" />

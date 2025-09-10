@@ -15,6 +15,8 @@ export default function ProjectDetailsPage() {
       const res = await fetch(`https://pleasing-consideration-production.up.railway.app/api/projects/${id}`);
       const data = await res.json();
       setProject(data);
+      // console.log(data);
+      
     } catch (err) {
       toast.error("Failed to fetch project details");
     }
