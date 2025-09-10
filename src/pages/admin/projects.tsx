@@ -6,9 +6,27 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
-export default function projects() {
+// 👇 define Project type
+interface Project {
+  _id: string;
+  title: string;
+  owner: string;
+  sector: string;
+  description: string;
+  result: string;
+  startDate: string;
+  endDate: string;
+  thumbnail?: {
+    url: string;
+    alt?: string;
+  };
+}
+
+export default function Projects() {
   useAdminAuth();
-  const [projects, setProjects] = useState([]);
+
+  // ✅ now projects is properly typed
+  const [projects, setProjects] = useState<Project[]>([]);
 
   const fetchProjects = async () => {
     const token = localStorage.getItem("adminToken");
@@ -51,7 +69,7 @@ export default function projects() {
 
       if (res.ok) {
         toast.success("Project deleted!");
-        setProjects((prev) => prev.filter((p) => p._id !== id)); // ✅ remove from UI
+        setProjects((prev) => prev.filter((p) => p._id !== id)); // ✅ works now
       } else {
         toast.error(data.message || "Failed to delete project");
       }
@@ -63,6 +81,7 @@ export default function projects() {
   useEffect(() => {
     fetchProjects();
   }, []);
+
   return (
     <>
       <Head>

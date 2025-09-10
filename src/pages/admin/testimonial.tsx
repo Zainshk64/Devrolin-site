@@ -199,7 +199,7 @@ export default function TestimonialsPage() {
                       className="btn-secondary p-3 position-absolute top-0 end-0 m-2"
                       onClick={() => handleTestDelete(item._id)}
                     >
-                      <i class="fas fa-trash-alt    "></i>
+                      <i className="fas fa-trash-alt    "></i>
                     </button>
 
                     {/* Avatar */}

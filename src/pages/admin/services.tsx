@@ -191,7 +191,7 @@ const AdminServices = () => {
                   />
                 ) : (
                   <div className="d-flex justify-content-center align-items-center h-100 text-white fs-1">
-                    <i class="fa fa-camera" aria-hidden="true"></i>
+                    <i className="fa fa-camera" aria-hidden="true"></i>
                   </div>
                 )}
               </div>
@@ -229,7 +229,7 @@ const AdminServices = () => {
                   />
                 ) : (
                   <div className="d-flex justify-content-center align-items-center h-100 text-white fs-4">
-                    <i class="fa fa-camera" aria-hidden="true"></i>
+                    <i className="fa fa-camera" aria-hidden="true"></i>
                     
                   </div>
                 )}

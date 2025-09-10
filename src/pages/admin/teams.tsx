@@ -455,7 +455,7 @@ export default function Teams() {
                       className="btn-secondary p-3 position-absolute top-0 end-0 m-2"
                       onClick={() => handleTestDelete(member._id)}
                     >
-                      <i class="fas fa-trash-alt    "></i>
+                      <i className="fas fa-trash-alt    "></i>
                     </button>
                   <div className="text-center pt-4">
                     <img
