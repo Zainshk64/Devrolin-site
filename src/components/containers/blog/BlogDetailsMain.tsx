@@ -28,9 +28,9 @@ const BlogDetailsMain = ({ blogs }) => {
 
   const fetchBlogs = async () => {
     try {
-      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/blogs/recent").then(
-        (res) => res.json()
-      );
+      const recent = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/blogs/recent"
+      ).then((res) => res.json());
       setRecentBlogs(recent);
     } catch (err) {
       toast.error("Error fetching blogs");
@@ -135,7 +135,6 @@ const BlogDetailsMain = ({ blogs }) => {
                     ultrices, metus dolor dictum enim, sed convallis lacus urna
                     nec erat.
                   </p>
-                 
                 </div>
               </div>
               <div className="bd-quote">

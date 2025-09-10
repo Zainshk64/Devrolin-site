@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import one from "public/images/teams/one.png";
 
 gsap.registerPlugin(ScrollTrigger);
-const TeamDetailsMain = ({ member }) => {
+const TeamDetailsMain = ({ member }: { member: any }) => {
   useEffect(() => {
     const percentElements = document.querySelectorAll("[data-percent]");
 
