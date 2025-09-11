@@ -13,139 +13,147 @@ export default function Teams() {
     jobTitle: "",
     aboutMe: "",
     description: "",
-    socials: [
-      { social: "", url: "" },
-    ],
+    socials: [{ social: "", url: "" }],
     skills: [{ name: "", proficiency: "" }],
     education: [{ degree: "", year: "", description: "" }],
   });
-
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const token = localStorage.getItem("adminToken");
+
+  const [loading, setLoading] = useState(false);
+  const [editForm, setEditForm] = useState(false);
+  const [currentMemberId, setCurrentMemberId] = useState<string | null>(null);
+
+  const token = typeof window !== "undefined" ? localStorage.getItem("adminToken") : null;
 
   // Fetch Members
   const fetchMembers = async () => {
     try {
-      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/members/");
+      const res = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/members/"
+      );
       const data = await res.json();
       setMembers(data.members || []);
-      // console.log(data.members);
     } catch (err) {
       toast.error("Error fetching members");
     }
   };
 
-
-    const handleTestDelete = async (Id: string) => {
-      const token = localStorage.getItem("adminToken");
-  
-      // console.log(Id);
-  
-      try {
-        const res = await fetch(
-          `https://pleasing-consideration-production.up.railway.app/api/admin/delete-members/${Id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-  
-        const data = await res.json();
-  
-        if (res.ok) {
-          toast.success("Member deleted!");
-          setMembers((prev) =>
-            prev.filter((members) => members._id !== Id)
-          );
-        } else {
-          toast.error(data.message || "Failed to delete member");
-        }
-      } catch (err) {
-        toast.error("Something went wrong");
-      }
-    };
-  
-
   useEffect(() => {
     fetchMembers();
   }, []);
 
-  // Submit Form
+  // Handle Delete
+  const handleDelete = async (Id: string) => {
+    try {
+      const res = await fetch(
+        `https://pleasing-consideration-production.up.railway.app/api/admin/delete-member/${Id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const data = await res.json();
+      if (res.ok) {
+        toast.success("Member deleted!");
+        setMembers((prev) => prev.filter((m) => m._id !== Id));
+      } else {
+        toast.error(data.message || "Failed to delete member");
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  // Handle Edit
+  const handleTeamEdit = (Id: string) => {
+    const member = members.find((m) => m._id === Id);
+    if (member) {
+      setForm({
+        name: member.name || "",
+        jobTitle: member.jobTitle || "",
+        aboutMe: member.aboutMe || "",
+        description: member.description || "",
+        socials: member.socials?.length ? member.socials : [{ social: "", url: "" }],
+        skills: member.skills?.length ? member.skills : [{ name: "", proficiency: "" }],
+        education: member.education?.length
+          ? member.education
+          : [{ degree: "", year: "", description: "" }],
+      });
+      setImage(null);
+      setImagePreview(member.image?.url || null);
+      setCurrentMemberId(Id);
+      setEditForm(true);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Submit Form (Create + Update)
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    //     if (!form.name || !form.jobTitle || !form.aboutMe || !form.description) {
-    //   return toast.warning("Please fill all required fields");
-    // }
-
-    // if (form.skills.length === 0 || !form.skills[0].name || !form.skills[0].proficiency) {
-    //   return toast.warning("At least one skill is required");
-    // }
-
-    // if (form.education.length === 0 || !form.education[0].degree || !form.education[0].year) {
-    //   return toast.warning("At least one education entry is required");
-    // }
-    if (!image) return toast.error("Image is required");
+    if (!editForm && !image) return toast.error("Image is required");
 
     const fd = new FormData();
     fd.append("name", form.name);
     fd.append("jobTitle", form.jobTitle);
     fd.append("aboutMe", form.aboutMe);
     fd.append("description", form.description);
-    fd.append("image", image);
-
-    // form.socials.forEach((s, i) => {
-    //   fd.append(`socials[${i}][social]`, s.social);
-    //   fd.append(`socials[${i}][url]`, s.url || "");
-    // });
-
-    // form.skills.forEach((s, i) => {
-    //   fd.append(`skills[${i}][name]`, s.name);
-    //   fd.append(`skills[${i}][proficiency]`, s.proficiency.toString());
-    // });
-
-    // form.education.forEach((e, i) => {
-    //   fd.append(`education[${i}][degree]`, e.degree);
-    //   fd.append(`education[${i}][year]`, e.year.toString());
-    //   fd.append(`education[${i}][description]`, e.description);
-    // });
+    if (image) fd.append("image", image);
 
     fd.append("socials", JSON.stringify(form.socials));
     fd.append("skills", JSON.stringify(form.skills));
     fd.append("education", JSON.stringify(form.education));
 
     try {
-      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-member", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
-      });
+      setLoading(true);
+      let res;
+
+      if (editForm && currentMemberId) {
+        res = await fetch(
+          `https://pleasing-consideration-production.up.railway.app/api/admin/edit-member/${currentMemberId}`,
+          {
+            method: "PUT",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd,
+          }
+        );
+      } else {
+        res = await fetch(
+          "https://pleasing-consideration-production.up.railway.app/api/admin/new-member",
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd,
+          }
+        );
+      }
+
+      const data = await res.json();
 
       if (res.ok) {
-        toast.success("Team member added");
+        toast.success(editForm ? "Member updated" : "Member added");
         setForm({
           name: "",
           jobTitle: "",
           aboutMe: "",
           description: "",
-          socials: [
-            { social: "", url: "" },
-          ],
+          socials: [{ social: "", url: "" }],
           skills: [{ name: "", proficiency: "" }],
           education: [{ degree: "", year: "", description: "" }],
         });
         setImage(null);
         setImagePreview(null);
+        setEditForm(false);
+        setCurrentMemberId(null);
         fetchMembers();
       } else {
-        const data = await res.json();
-        console.error("❌ API Error Response:", data); //
-        toast.error(data.message || "Failed to add member");
+        toast.error(data.message || "Failed to process request");
       }
     } catch (err) {
       toast.error("Server error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -153,19 +161,14 @@ export default function Teams() {
     <>
       <Head>
         <title>Admin Teams</title>
-        <meta
-          name="description"
-          content="The official Next.js Admin Dashboard"
-        />
       </Head>
-
       <AdminLayout>
         <div className="container py-4">
-          <h4 className="text-white mb-4">Add Team Member</h4>
-          <form
-            className="row g-3 bg-dark  rounded shadow-sm mb-5"
-            onSubmit={handleSubmit}
-          >
+          <h4 className="text-white mb-4">
+            {editForm ? "Edit Team Member" : "Add Team Member"}
+          </h4>
+          <form className="row g-3 rounded shadow-sm mb-5" onSubmit={handleSubmit}>
+            {/* Name */}
             <div className="col-md-6">
               <label className="form-label text-white">Name</label>
               <input
@@ -176,6 +179,7 @@ export default function Teams() {
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
             </div>
+            {/* Job Title */}
             <div className="col-md-6">
               <label className="form-label text-white">Job Title</label>
               <input
@@ -186,6 +190,7 @@ export default function Teams() {
                 onChange={(e) => setForm({ ...form, jobTitle: e.target.value })}
               />
             </div>
+            {/* About Me */}
             <div className="col-12">
               <label className="form-label text-white">About Me</label>
               <textarea
@@ -193,26 +198,31 @@ export default function Teams() {
                 required
                 value={form.aboutMe}
                 onChange={(e) => setForm({ ...form, aboutMe: e.target.value })}
-              ></textarea>
+              />
             </div>
-            <div className="col-12">
+            {/* Description */}
+            <div className="col-12 mb-2">
               <label className="form-label text-white">Description</label>
               <textarea
                 className="form-control"
                 rows={3}
                 required
                 value={form.description}
-                onChange={(e) =>
-                  setForm({ ...form, description: e.target.value })
-                }
-              ></textarea>
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+              />
             </div>
-            {/* Fixed Social Platforms */}
-            {form.socials.map((social, index) => (
-              <div className="row mb-3" key={index}>
+
+            {/* ---- KEEP Socials / Skills / Education sections exactly as you had ---- */}
+            {/* socials.map(...) + add/remove button */}
+            {/* skills.map(...) + add/remove button */}
+            {/* education.map(...) + add/remove button */}
+
+            
+ {form.socials.map((social, index) => (
+              <div className="row" key={index}>
                 <div className="col-md-6 mb-3">
                   <label className="form-label text-white">
-                    Social Platform 
+                    Social Platform
                   </label>
                   <input
                     type="text"
@@ -261,7 +271,7 @@ export default function Teams() {
             {form.socials.length < 3 && (
               <button
                 type="button"
-                className="btn mb-3"
+                className="btn  mb-3"
                 onClick={() =>
                   setForm({
                     ...form,
@@ -269,14 +279,14 @@ export default function Teams() {
                   })
                 }
               >
-                + Add Skill
+                + Add Social
               </button>
             )}
 
             {/* Skills Input - max 4 */}
             {form.skills.map((skill, index) => (
-              <div className="row mb-3" key={index}>
-                <div className="col-md-6">
+              <div className="row " key={index}>
+                <div className="col-md-6 mb-3">
                   <label className="form-label text-white">Skill Name</label>
                   <input
                     type="text"
@@ -326,7 +336,7 @@ export default function Teams() {
             {form.skills.length < 4 && (
               <button
                 type="button"
-                className="btn mb-3"
+                className="btn  mb-3"
                 onClick={() =>
                   setForm({
                     ...form,
@@ -358,6 +368,7 @@ export default function Teams() {
                   <label className="form-label text-white">Year</label>
                   <input
                     type="text"
+                    placeholder="2025"
                     className="form-control p-3"
                     value={edu.year}
                     onChange={(e) => {
@@ -384,7 +395,7 @@ export default function Teams() {
                   <div className="col-md-2">
                     <button
                       type="button"
-                      className="btn mt-3"
+                      className="btn  mt-3"
                       onClick={() => {
                         const updated = form.education.filter(
                           (_, i) => i !== index
@@ -401,7 +412,7 @@ export default function Teams() {
             {form.education.length < 2 && (
               <button
                 type="button"
-                className="btn mb-3"
+                className="btn  mb-3"
                 onClick={() =>
                   setForm({
                     ...form,
@@ -416,11 +427,13 @@ export default function Teams() {
               </button>
             )}
 
+
+
+            {/* Profile Image */}
             <div className="col-12">
               <label className="form-label text-white">Profile Image</label>
               <input
                 type="file"
-                name="image"
                 className="form-control p-3"
                 accept="image/*"
                 onChange={(e) => {
@@ -441,7 +454,14 @@ export default function Teams() {
 
             <div className="col-12">
               <button className="btn">
-                <i className="fa fa-plus-circle me-2"></i> Add Member
+                <i className="fa fa-plus-circle me-2"></i>
+                {loading
+                  ? editForm
+                    ? "Updating..."
+                    : "Adding..."
+                  : editForm
+                  ? "Update Member"
+                  : "Add Member"}
               </button>
             </div>
           </form>
@@ -451,12 +471,20 @@ export default function Teams() {
             {members.map((member) => (
               <div key={member._id} className="col-md-6 col-lg-4 mb-4">
                 <div className="card bg-dark text-white border border-secondary position-relative h-100 shadow-sm">
-                  <button
-                      className="btn-secondary p-3 position-absolute top-0 end-0 m-2"
-                      onClick={() => handleTestDelete(member._id)}
+                  <div className="position-absolute p-2 top-0 end-0">
+                    <button
+                      className="btn-secondary m-2"
+                      onClick={() => handleDelete(member._id)}
                     >
-                      <i className="fas fa-trash-alt    "></i>
+                      <i className="fas fa-trash-alt"></i>
                     </button>
+                    <button
+                      className="btn-secondary m-2"
+                      onClick={() => handleTeamEdit(member._id)}
+                    >
+                      <i className="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                  </div>
                   <div className="text-center pt-4">
                     <img
                       src={member.image?.url}
@@ -476,10 +504,9 @@ export default function Teams() {
                           href={social.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-white admin-social "
+                          className="text-white admin-social"
                         >
-                          {/* <i className="fa fa-link"></i> */}
-                          <p className="text-capitalize  " >{social.social}</p>
+                          <p className="text-capitalize">{social.social}</p>
                         </a>
                       ))}
                     </div>
@@ -487,11 +514,6 @@ export default function Teams() {
                 </div>
               </div>
             ))}
-            {!members.length && (
-              <p className="text-white text-center mt-4">
-                No team members found.
-              </p>
-            )}
           </div>
         </div>
       </AdminLayout>

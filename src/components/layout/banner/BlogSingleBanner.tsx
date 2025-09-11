@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const BlogSingleBanner = () => {
+const BlogSingleBanner = ({ blogs }: { blogs: any }) => {
   return (
     <section
       className="cmn-banner bg-img"
@@ -12,7 +12,7 @@ const BlogSingleBanner = () => {
           <div className="col-12">
             <div className="text-center text-lg-start">
               <h2 className="title title-anim">
-                We denounce with righteous indignation
+                {blogs?.title}
               </h2>
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">

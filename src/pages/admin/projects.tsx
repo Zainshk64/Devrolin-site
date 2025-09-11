@@ -24,9 +24,8 @@ interface Project {
 
 export default function Projects() {
   useAdminAuth();
-
-  // ✅ now projects is properly typed
   const [projects, setProjects] = useState<Project[]>([]);
+  const [editingProject, setEditingProject] = useState<Project | null>(null); // ✅ for edit mode
 
   const fetchProjects = async () => {
     const token = localStorage.getItem("adminToken");
@@ -53,7 +52,6 @@ export default function Projects() {
 
   const handleDeleteProject = async (id: string) => {
     const token = localStorage.getItem("adminToken");
-
     try {
       const res = await fetch(
         `https://pleasing-consideration-production.up.railway.app/api/admin/delete-project/${id}`,
@@ -69,13 +67,18 @@ export default function Projects() {
 
       if (res.ok) {
         toast.success("Project deleted!");
-        setProjects((prev) => prev.filter((p) => p._id !== id)); // ✅ works now
+        setProjects((prev) => prev.filter((p) => p._id !== id));
       } else {
         toast.error(data.message || "Failed to delete project");
       }
     } catch (err) {
       toast.error("Something went wrong while deleting project");
     }
+  };
+
+  const handleEditProject = (project: Project) => {
+    setEditingProject(project); // ✅ send project to form
+    window.scrollTo({ top: 0, behavior: "smooth" }); // scroll to form
   };
 
   useEffect(() => {
@@ -92,8 +95,16 @@ export default function Projects() {
         />
       </Head>
       <AdminLayout>
-        <AdminCreateProject onProjectAdded={fetchProjects} />
-        <AdminProjects projects={projects} onDelete={handleDeleteProject} />
+        <AdminCreateProject
+          onProjectAdded={fetchProjects}
+          editingProject={editingProject} // ✅ pass project to form
+          clearEditing={() => setEditingProject(null)} // ✅ reset after edit
+        />
+        <AdminProjects
+          projects={projects}
+          onDelete={handleDeleteProject}
+          onEdit={handleEditProject} // ✅ send edit handler
+        />
       </AdminLayout>
     </>
   );

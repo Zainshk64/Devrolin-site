@@ -29,7 +29,7 @@ const BlogDetais = () => {
     
   return (
     <Layout header={2} footer={5} video={0}>
-      <BlogSingleBanner  />
+      <BlogSingleBanner blogs={blogs} />
       <BlogDetailsMain blogs={blogs} />
     </Layout>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 
 interface Testimonial {
@@ -21,9 +21,15 @@ interface FormDataState {
 
 interface Props {
   onProjectAdded: () => void;
+  editingProject?: Project | null;
+  clearEditing?: () => void;
 }
 
-export default function AdminCreateProject({ onProjectAdded }: Props) {
+export default function AdminCreateProject({
+  onProjectAdded,
+  editingProject,
+  clearEditing,
+}: Props) {
   const [formData, setFormData] = useState<FormDataState>({
     title: "",
     owner: "",
@@ -79,10 +85,39 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
   };
 
   const handleSnapshotsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files ? Array.from(e.target.files).slice(0, 3) : [];
-    setSnapshots(files);
-    setSnapshotsPreview(files.map((file) => URL.createObjectURL(file)));
+    const files = e.target.files ? Array.from(e.target.files) : [];
+    if (!files.length) return;
+
+    // ✅ Add new files to existing ones, max 3
+    const updated = [...snapshots, ...files].slice(0, 3);
+
+    setSnapshots(updated);
+    setSnapshotsPreview(updated.map((file) => URL.createObjectURL(file)));
   };
+
+  // ✅ Prefill form when editingProject changes
+  const [loading, setLoading] = useState(false);
+  const thumbnailRef = useRef<HTMLInputElement | null>(null);
+  const mainImageRef = useRef<HTMLInputElement | null>(null);
+  const snapshotsRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (editingProject) {
+      setFormData({
+        title: editingProject.title,
+        owner: editingProject.owner,
+        sector: editingProject.sector,
+        description: editingProject.description,
+        result: editingProject.result,
+        startDate: editingProject.startDate?.split("T")[0] || "",
+        endDate: editingProject.endDate?.split("T")[0] || "",
+        testimonial: editingProject.testimonial || [{ client: "", quote: "" }],
+      });
+      setThumbnailPreview(editingProject.thumbnail?.url || "");
+      setMainImagePreview(editingProject.mainImage?.url || ""); // keep blank until new upload
+      setSnapshotsPreview([]); // same
+    }
+  }, [editingProject]);
 
   const resetForm = () => {
     setFormData({
@@ -101,72 +136,77 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
     setThumbnailPreview("");
     setMainImagePreview("");
     setSnapshotsPreview([]);
+    if (thumbnailRef.current) thumbnailRef.current.value = "";
+    if (mainImageRef.current) mainImageRef.current.value = "";
+    if (snapshotsRef.current) snapshotsRef.current.value = "";
+    clearEditing?.(); // ✅ exit edit mode
   };
 
-  // --------- Submit ----------
-  const [Loading, setLoading] = useState(false)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const fd = new FormData();
-    // console.log(fd);
-    
-
-    // Normal fields
     Object.entries(formData).forEach(([key, value]) => {
       if (key !== "testimonial") {
         fd.append(key, value as string);
       }
     });
-
-    // Testimonial fields
     formData.testimonial.forEach((t, i) => {
       fd.append(`testimonial[${i}][client]`, t.client);
       fd.append(`testimonial[${i}][quote]`, t.quote);
     });
 
-    // Images
     if (thumbnail) fd.append("thumbnail", thumbnail);
     if (mainImage) fd.append("mainImage", mainImage);
-    snapshots.forEach((snap) => {
-      fd.append("snapshots", snap);
-    });
+    snapshots.forEach((snap) => fd.append("snapshots", snap));
 
     try {
-      setLoading(true)
-      const res = await fetch(
-        "https://pleasing-consideration-production.up.railway.app/api/admin/new-project",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: fd,
-          
-        }
-      );
+      setLoading(true);
+      let res;
+
+      if (editingProject?._id) {
+        // ✅ PUT edit
+        res = await fetch(
+          `https://pleasing-consideration-production.up.railway.app/api/admin/edit-project/${editingProject._id}`,
+          {
+            method: "PUT",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd,
+          }
+        );
+      } else {
+        // ✅ POST create
+        res = await fetch(
+          "https://pleasing-consideration-production.up.railway.app/api/admin/new-project",
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd,
+          }
+        );
+      }
 
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Project added successfully");
+        toast.success(editingProject ? "Project updated!" : "Project created!");
         resetForm();
         onProjectAdded();
       } else {
-        toast.error(data.message || "Failed to add project");
+        toast.error(data.message || "Failed to save project");
       }
     } catch (error) {
       toast.error("Something went wrong");
-    }
-    finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
-
   // --------- JSX ----------
   return (
     <div className="container mb-5">
-      <h4 className="text-white mb-4">Add New Project</h4>
+      <h4 className="text-white mb-4">
+        {editingProject ? "Edit Project" : "Add New Project"}
+      </h4>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="row">
           {/* Text Inputs */}
@@ -242,6 +282,7 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
             <label className="form-label text-white">Thumbnail</label>
             <input
               type="file"
+              ref={thumbnailRef}
               className="form-control p-3"
               onChange={handleThumbnail}
               accept="image/*"
@@ -262,6 +303,7 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
             <label className="form-label text-white">Main Image</label>
             <input
               type="file"
+              ref={mainImageRef}
               className="form-control p-3"
               onChange={handleMainImageChange}
               accept="image/*"
@@ -282,6 +324,7 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
             <label className="form-label text-white">Snapshots (up to 3)</label>
             <input
               type="file"
+              ref={snapshotsRef}
               className="form-control p-3"
               multiple
               onChange={handleSnapshotsChange}
@@ -300,10 +343,26 @@ export default function AdminCreateProject({ onProjectAdded }: Props) {
             </div>
           </div>
         </div>
-            
+
         <button type="submit" className="btn">
-          {Loading ? "Creating..." : "Create Project"}
+          {loading
+            ? editingProject
+              ? "Updating..."
+              : "Creating..."
+            : editingProject
+            ? "Update Project"
+            : "Create Project"}{" "}
         </button>
+
+        {editingProject && (
+          <button
+            type="button"
+            className="btn btn-secondary ms-2"
+            onClick={resetForm}
+          >
+            Cancel Edit
+          </button>
+        )}
       </form>
     </div>
   );

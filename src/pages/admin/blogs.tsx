@@ -11,12 +11,10 @@ const AdminBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/blogs/recent").then(
-        (res) => res.json()
-      );
+      const recent = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/blogs/recent"
+      ).then((res) => res.json());
       setRecentBlogs(recent);
-      console.log(recent);
-      
     } catch (err) {
       toast.error("Error fetching blogs");
     }
@@ -40,6 +38,9 @@ const AdminBlogs = () => {
     mainImage: "",
     smallImages: ["", ""],
   });
+
+  const [editForm, setEditForm] = useState(false);
+  const [currentBlogId, setCurrentBlogId] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -76,10 +77,25 @@ const AdminBlogs = () => {
     }
   };
 
+  const resetForm = () => {
+    setForm({
+      title: "",
+      description: "",
+      details: "",
+      author: "",
+      category: "Web Development",
+      mainImage: null,
+      smallImages: [null, null],
+    });
+    setPreviews({ mainImage: "", smallImages: ["", ""] });
+    setEditForm(false);
+    setCurrentBlogId(null);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const token = localStorage.getItem("adminToken");
-3
+
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("description", form.description);
@@ -88,50 +104,53 @@ const AdminBlogs = () => {
     formData.append("category", form.category);
 
     if (form.mainImage) {
-      formData.append("mainImage", form.mainImage); // must match multer field name
+      formData.append("mainImage", form.mainImage);
     }
 
-    form.smallImages.forEach((img, i) => {
-      if (img) formData.append("smallImages", img); // multiple files with same name
-    });3
+    form.smallImages.forEach((img) => {
+      if (img) formData.append("smallImages", img);
+    });
 
     try {
-      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/admin/new-blog", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      let res;
+      if (editForm && currentBlogId) {
+        // Update blog
+        res = await fetch(
+          `https://pleasing-consideration-production.up.railway.app/api/admin/edit-blog/${currentBlogId}`,
+          {
+            method: "PUT",
+            headers: { Authorization: `Bearer ${token}` },
+            body: formData,
+          }
+        );
+      } else {
+        // Create blog
+        res = await fetch(
+          "https://pleasing-consideration-production.up.railway.app/api/admin/new-blog",
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: formData,
+          }
+        );
+      }
 
       const data = await res.json();
-      
+
       if (res.ok) {
-        toast.success("Blog created successfully");
-        setForm({
-          title: "",
-          description: "",
-          details: "",
-          author: "",
-          category: "",
-          mainImage: null,
-          smallImages: [null, null],
-        });
-        setPreviews({ mainImage: "", smallImages: ["", ""] });
+        toast.success(editForm ? "Blog updated successfully" : "Blog created successfully");
+        resetForm();
         fetchBlogs();
       } else {
-        toast.error(data.error || "Failed to create blog");
-        console.log(data.error);
-        
+        toast.error(data.error || "Failed to process blog");
       }
     } catch (error) {
       toast.error("Server error");
     }
   };
+
   const handleBlogDelte = async (Id: string) => {
     const token = localStorage.getItem("adminToken");
-
-    console.log(Id);
 
     try {
       const res = await fetch(
@@ -157,6 +176,29 @@ const AdminBlogs = () => {
     }
   };
 
+  const handleBlogEdit = (Id: string) => {
+    toast.success("Scroll Top for edit")
+    const blog = recentBlogs.find((b) => b._id === Id);
+    if (blog) {
+      setForm({
+        title: blog.title,
+        description: blog.description,
+        details: blog.details,
+        author: blog.author,
+        category: blog.category,
+        mainImage: null,
+        smallImages: [null, null],
+      });
+      setPreviews({
+        mainImage: blog.mainImage?.url || "",
+        smallImages: blog.smallImages?.map((img: any) => img.url) || ["", ""],
+      });
+      setEditForm(true);
+      setCurrentBlogId(Id);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -166,7 +208,9 @@ const AdminBlogs = () => {
 
       <AdminLayout>
         <div className="container py-4">
-          <h4 className="text-white mb-4">Create New Blog</h4>
+          <h4 className="text-white mb-4">
+            {editForm ? "Edit Blog" : "Create New Blog"}
+          </h4>
 
           <form className="row g-3" onSubmit={handleSubmit}>
             {/* Title & Author */}
@@ -222,8 +266,7 @@ const AdminBlogs = () => {
                 onChange={handleChange}
                 className="form-select p-3"
               >
-                <option className="text-white" >Select Category</option>
-
+                <option className="text-white">Select Category</option>
                 <option className="text-white">Web Development</option>
                 <option className="text-white">Artificial Intelligence</option>
                 <option className="text-white">Modern UI/UX Design</option>
@@ -232,13 +275,15 @@ const AdminBlogs = () => {
 
             {/* Main Image Upload + Preview */}
             <div className="col-md-6">
-              <label className="form-label text-white">Main Image - (690x550)</label>
+              <label className="form-label text-white">
+                Main Image - (690x550)
+              </label>
               <input
                 type="file"
                 accept="image/*"
                 className="form-control p-3"
                 onChange={handleMainImageUpload}
-                required
+                required={!editForm}
               />
               {previews.mainImage && (
                 <img
@@ -253,7 +298,7 @@ const AdminBlogs = () => {
               {[0, 1].map((i) => (
                 <div className="" key={i}>
                   <label className="form-label mt-3 text-white">{`SmallImage ${
-                    i + 1 
+                    i + 1
                   }  - (456x362) `}</label>
                   <input
                     type="file"
@@ -275,8 +320,17 @@ const AdminBlogs = () => {
 
             <div className="col-12">
               <button type="submit" className="btn">
-                Create Blog
+                {editForm ? "Update Blog" : "Create Blog"}
               </button>
+              {editForm && (
+                <button
+                  type="button"
+                  className="btn btn-secondary ms-2"
+                  onClick={resetForm}
+                >
+                  Cancel Edit
+                </button>
+              )}
             </div>
           </form>
 
@@ -287,7 +341,7 @@ const AdminBlogs = () => {
           <div className="row">
             {recentBlogs.map((blog: any) => (
               <div key={blog._id} className="col-12 col-lg-6 mb-4">
-                <div className="card bg-dark text-white h-100 border border-warning">
+                <div className="card bg-dark text-white h-100 border border-secondary">
                   {blog.mainImage?.url && (
                     <img
                       src={blog.mainImage.url}
@@ -300,17 +354,25 @@ const AdminBlogs = () => {
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
                       <h5 className="card-title">{blog.title}</h5>
-                      <button
-                        className="bg-danger p-2 rounded"
-                        onClick={() => handleBlogDelte(blog._id)}
-                      >
-                        Delete
-                      </button>
+                      <div>
+                        <button
+                          className="bg-danger p-2 mx-2 rounded"
+                          onClick={() => handleBlogDelte(blog._id)}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="bg-primary p-2 rounded"
+                          onClick={() => handleBlogEdit(blog._id)}
+                        >
+                          Edit
+                        </button>
+                      </div>
                     </div>
                     <p className="card-text">{blog.description}</p>
                   </div>
 
-                  <div className="card-body bg-transparent border-top border-warning  small">
+                  <div className="card-body bg-transparent border-top border-secondary  small">
                     <h6>
                       By {blog.author} | Category: {blog.category}
                     </h6>

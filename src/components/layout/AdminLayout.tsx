@@ -61,7 +61,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <span className="navbar-brand">Admin Panel</span>
         <div className="navbar__logo">
           <Link href="/" aria-label="go to home">
             <Image src={logo} height={78} width={168} alt="Image" priority />

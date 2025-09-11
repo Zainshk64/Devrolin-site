@@ -17,11 +17,17 @@ interface Project {
 }
 
 interface AdminProjectsProps {
-  projects: Project[];
-  onDelete: (id: string) => void; // 🔹 new prop
+    projects: Project[];
+  onDelete: (id: string) => void;
+  onEdit: (project: Project) => void; // ✅ add
+
 }
 
-export default function AdminProjects({ projects, onDelete }: AdminProjectsProps) {
+export default function AdminProjects({
+  projects,
+  onDelete,
+  onEdit,
+}: AdminProjectsProps) {
   useAdminAuth();
 
   return (
@@ -41,13 +47,15 @@ export default function AdminProjects({ projects, onDelete }: AdminProjectsProps
                 />
 
                 {/* Delete Button */}
-                <button
-                  className="p-2 position-absolute text-danger top-0 end-0 m-2"
-                  onClick={() => onDelete(project._id)}
-                >
-                  <i className="fas fa-trash-alt"></i>
-                </button>
+                <div className="position-absolute p-2 top-0 end-0">
+                  <button className="m-2 bg-danger rounded p-2 " onClick={() => onDelete(project._id)}>
+                    <i className="fas fa-trash-alt"></i>
+                  </button>
 
+                  <button className="m-2 bg-secondary p-2 rounded" onClick={() => onEdit(project)}>
+                    <i className="fa fa-pencil" aria-hidden="true"></i>
+                  </button>
+                </div>
                 <div className="card-body">
                   <h5 className="card-title">{project.title}</h5>
                   <p className="mb-1">
