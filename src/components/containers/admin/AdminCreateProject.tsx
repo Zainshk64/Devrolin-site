@@ -18,12 +18,12 @@ interface FormDataState {
   endDate: string;
   testimonial: Testimonial[];
 }
-
 interface Props {
   onProjectAdded: () => void;
-  editingProject?: Project | null;
+  editingProject?: any | null;
   clearEditing?: () => void;
 }
+
 
 export default function AdminCreateProject({
   onProjectAdded,
@@ -286,7 +286,6 @@ export default function AdminCreateProject({
               className="form-control p-3"
               onChange={handleThumbnail}
               accept="image/*"
-              required
             />
             {thumbnailPreview && (
               <img
@@ -307,7 +306,6 @@ export default function AdminCreateProject({
               className="form-control p-3"
               onChange={handleMainImageChange}
               accept="image/*"
-              required
             />
             {mainImagePreview && (
               <img
