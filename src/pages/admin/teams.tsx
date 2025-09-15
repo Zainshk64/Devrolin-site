@@ -24,7 +24,8 @@ export default function Teams() {
   const [editForm, setEditForm] = useState(false);
   const [currentMemberId, setCurrentMemberId] = useState<string | null>(null);
 
-  const token = typeof window !== "undefined" ? localStorage.getItem("adminToken") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("adminToken") : null;
 
   // Fetch Members
   const fetchMembers = async () => {
@@ -75,10 +76,18 @@ export default function Teams() {
         jobTitle: member.jobTitle || "",
         aboutMe: member.aboutMe || "",
         description: member.description || "",
-        socials: member.socials?.length ? member.socials : [{ social: "", url: "" }],
-        skills: member.skills?.length ? member.skills : [{ name: "", proficiency: "" }],
+        socials: member.socials?.length
+          ? member.socials
+          : [{ social: "", url: "" }],
+        skills: member.skills?.length
+          ? member.skills
+          : [{ name: "", proficiency: "" }],
         education: member.education?.length
-          ? member.education
+          ? member.education.map((edu: any) => ({
+              degree: edu.degree || "",
+              year: String(edu.year || ""), // ✅ force year to be string
+              description: edu.description || "",
+            }))
           : [{ degree: "", year: "", description: "" }],
       });
       setImage(null);
@@ -167,7 +176,10 @@ export default function Teams() {
           <h4 className="text-white mb-4">
             {editForm ? "Edit Team Member" : "Add Team Member"}
           </h4>
-          <form className="row g-3 rounded shadow-sm mb-5" onSubmit={handleSubmit}>
+          <form
+            className="row g-3 rounded shadow-sm mb-5"
+            onSubmit={handleSubmit}
+          >
             {/* Name */}
             <div className="col-md-6">
               <label className="form-label text-white">Name</label>
@@ -208,7 +220,9 @@ export default function Teams() {
                 rows={3}
                 required
                 value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
               />
             </div>
 
@@ -217,8 +231,7 @@ export default function Teams() {
             {/* skills.map(...) + add/remove button */}
             {/* education.map(...) + add/remove button */}
 
-            
- {form.socials.map((social, index) => (
+            {form.socials.map((social, index) => (
               <div className="row" key={index}>
                 <div className="col-md-6 mb-3">
                   <label className="form-label text-white">
@@ -426,8 +439,6 @@ export default function Teams() {
                 + Add Education
               </button>
             )}
-
-
 
             {/* Profile Image */}
             <div className="col-12">
