@@ -52,8 +52,8 @@ const ProjectMain = ({ projects }: { projects: any }) => {
               <img
                 src={project.thumbnail?.url}
                 className="card-img-top img-fluid"
-                alt={project.mainImage?.alt || "project"}
-                style={{ height: 180, objectFit: "cover" }}
+                alt={project.thumbnail?.alt || "project"}
+                style={{objectFit: "cover" }}
               />
             </Link>
           </div>
@@ -70,7 +70,7 @@ const ProjectMain = ({ projects }: { projects: any }) => {
       ) : (
         <p className="text-white text-center mt-4">No projects found.</p>
       )} */}
-      <div className="project-sl__single">
+      {/* <div className="project-sl__single">
         <div className="thumb">
           <Link href="project-single">
             <Image src={hrtwo} alt="Image" />
@@ -118,7 +118,7 @@ const ProjectMain = ({ projects }: { projects: any }) => {
           </h2>
         </div>
       </div>
-      {/*
+       */}
 
       <div className="project-sl__single">
         <div className="thumb">
@@ -247,7 +247,7 @@ const ProjectMain = ({ projects }: { projects: any }) => {
             </Link>
           </h2>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };

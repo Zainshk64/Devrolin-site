@@ -81,7 +81,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                 >
                   <SwiperSlide>
                     <div className="poster__slider-single">
-                      <img src={project.thumbnail?.url} alt="Image" />
+                      <img src={project.mainImage?.url} alt="Image" />
                     </div>
                   </SwiperSlide>
                   {/* <SwiperSlide>
@@ -194,26 +194,25 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
             </div>
           </div>
         </div>
-        {project.testimonial.map((test: any)=>(
-
-        <div className="row">
-          <div className="col-12">
-            <div className="quote-pj">
-              <div className="cont">
-                <div className="quote">
-                  <i className="fa-solid fa-quote-right"></i>
+        {project.testimonial.map((test: any) => (
+          <div className="row">
+            <div className="col-12">
+              <div className="quote-pj">
+                <div className="cont">
+                  <div className="quote">
+                    <i className="fa-solid fa-quote-right"></i>
+                  </div>
+                  <blockquote className="secondary-text">
+                    {test.quote ||
+                      "And the day came when the risk to remain tight in a bud wasmore painful than the risk it took to blossom."}
+                  </blockquote>
                 </div>
-                <blockquote className="secondary-text">
-                  {test.quote || "And the day came when the risk to remain tight in a bud wasmore painful than the risk it took to blossom." }
-
-                </blockquote>
-              </div>
-              <div className="author">
-                <h4> - {test.client}</h4>
+                <div className="author">
+                  <h4> - {test.client}</h4>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         ))}
 
         <div className="row">
@@ -251,7 +250,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
           }}
           breakpoints={{
             1400: {
-              slidesPerView: 5,
+              slidesPerView: 4,
               centeredSlides: true,
             },
             1200: {
@@ -266,17 +265,33 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
           }}
           className="project-d__slider"
         >
-           <SwiperSlide>
-            <div className="project-d__slider-single">
-              <Image src={done} alt="Image" />
-            </div>
-          </SwiperSlide>
-        {project.snapshots.map((snap: any)=>(
-          <SwiperSlide>
-            <div className="project-d__slider-single">
-              <Image src={snap.url} height={200} width={200} alt={snap.alt} />
-            </div>
-          </SwiperSlide>
+          
+          {project.snapshots.map((snap: any) => (
+            <SwiperSlide>
+              <div className="project-d__slider-single">
+                <Image src={snap.url} height={200} width={200} alt={snap.alt} />
+              </div>
+            </SwiperSlide>
+          ))}
+          {project.snapshots.map((snap: any) => (
+            <SwiperSlide>
+              <div className="project-d__slider-single">
+                <Image src={snap.url} height={200} width={200} alt={snap.alt} />
+              </div>
+            </SwiperSlide>
+          ))}
+          {project.snapshots.map((snap: any) => (
+            <SwiperSlide>
+              <div className="project-d__slider-single">
+                <Image src={snap.url} height={200} width={200} alt={snap.alt} />
+              </div>
+            </SwiperSlide>
+          ))}{project.snapshots.map((snap: any) => (
+            <SwiperSlide>
+              <div className="project-d__slider-single">
+                <Image src={snap.url} height={200} width={200} alt={snap.alt} />
+              </div>
+            </SwiperSlide>
           ))}
 
           {/* <SwiperSlide>
@@ -299,11 +314,11 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
               <Image src={dfive} alt="Image" />
             </div>
           </SwiperSlide> */}
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={done} alt="Image" />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
           {/* <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={dtwo} alt="Image" />
@@ -324,7 +339,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
               <Image src={dfive} alt="Image" />
             </div>
           </SwiperSlide> */}
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <div className="project-d__slider-single">
               <Image src={done} alt="Image" />
             </div>
@@ -348,7 +363,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
             <div className="project-d__slider-single">
               <Image src={dfive} alt="Image" />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
     </section>
