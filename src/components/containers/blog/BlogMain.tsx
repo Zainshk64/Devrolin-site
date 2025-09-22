@@ -161,7 +161,7 @@ const BlogMain = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="content ">
+                  {/* <div className="content ">
                     <h4 className="h4">
                       <Link href="blog-single">
                         There are also natural sources of methane - from
@@ -174,7 +174,7 @@ const BlogMain = () => {
                       violence against minorities in the country.
                     </p>
                    
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className="pagination-wrapper">
                   <ul className="pagination">
@@ -226,15 +226,13 @@ const BlogMain = () => {
                   </div>
                   <div className="widget__list">
                     <ul>
-                      <li>
-                        <Link href="blog">UI/UX Design</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">Web Development</Link>
-                      </li>
-                      <li>
-                        <Link href="blog">AI Brilliace</Link>
-                      </li>
+                      
+                        <li>Web Development</li>
+                        {/* <Link href="blog">AI Brilliace</Link> */}
+                        <li>
+
+                        AI Brilliace
+                        </li>
                     </ul>
                   </div>
                 </div>

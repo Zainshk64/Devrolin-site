@@ -22,7 +22,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
             <div className="project-d-group">
               <h3 className="light-title-lg">{project.title}</h3>
               <p>{project.description}</p>
-              <p>
+              {/* <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
                 injected humour, or randomised words which don't look even
@@ -37,10 +37,10 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                 you need to be sure there isn't anything embarrassing hidden in
                 the middle of text. All the Lorem Ipsum generators on the
                 Internet tend to repeat predefined chunks as necessary,
-              </p>
+              </p> */}
             </div>
           </div>
-          <div className="col-12 col-lg-6">
+          {/* <div className="col-12 col-lg-6">
             <div className="project-d-group">
               <h3 className="light-title-lg">Project Includes</h3>
               <p>
@@ -54,7 +54,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                 <li>Construction companies respond to the unique needs</li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="row">
           <div className="col-12">
@@ -86,7 +86,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                   </SwiperSlide>
                   {/* <SwiperSlide>
                     <div className="poster__slider-single">
-                      <img src={project.snapshots?.url} alt="Image" />
+                      <img src={project.thumbnail?.url} alt="Image" />
                     </div>
                   </SwiperSlide> */}
                   {/* <SwiperSlide>
@@ -181,7 +181,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">Project Description</h3>
               <p>{project.description}</p>
-              <p>
+              {/* <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
                 injected humour, or randomised words which don&apos;t look even
@@ -190,7 +190,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                 embarrassing hidden in the middle of text. All the Lorem Ipsum
                 generators on the Internet tend to repeat predefined chunks as
                 necessary,
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -220,7 +220,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
             <div className="details-group text-start section__content-cta">
               <h3 className="light-title-lg">The Result</h3>
               <p>{project.result}</p>
-              <p>
+              {/* <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
                 injected humour, or randomised words which don&apos;t look even
@@ -229,7 +229,7 @@ const ProjectDetailsMain = ({ project }: { project: any }) => {
                 embarrassing hidden in the middle of text. All the Lorem Ipsum
                 generators on the Internet tend to repeat predefined chunks as
                 necessary,
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

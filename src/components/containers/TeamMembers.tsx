@@ -18,10 +18,12 @@ const TeamMembers = () => {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch("https://pleasing-consideration-production.up.railway.app/api/members/");
+      const res = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/members/"
+      );
       const data = await res.json();
       setMembers(data.members || []);
-      // console.log(data.members);
+      console.log(data.members);
     } catch (err) {
       toast.error("Error fetching members");
     }
@@ -121,7 +123,9 @@ const TeamMembers = () => {
                             </p>
                           </div>
                           <h4>
-                            <Link href={`/team-single/${item._id}`}>{item.name}</Link>
+                            <Link href={`/team-single/${item._id}`}>
+                              {item.name}
+                            </Link>
                           </h4>
                           <p>{item.job}</p>
                           <div className="social-alt">
@@ -160,52 +164,44 @@ const TeamMembers = () => {
                         <div className="inner">
                           <p>{item.description}</p>
                           <div className="skill-wrap">
-                            <div className="skill-bar-single">
-                              <div className="skill-bar-title">
-                                <p>Wireframe</p>
-                              </div>
-                              <div
-                                className="skill-bar-wrapper"
-                                data-percent="75%"
-                              >
-                                <div className="skill-bar">
-                                  <div className="skill-bar-percent">
-                                    <span className="percent-value"></span>
+                            {item.skills.map((skills: any, i: number) => (
+                              <div key={i} className="skill-bar-single">
+                                <div className="skill-bar-title">
+                                  <p>{skills.name}</p>
+                                </div>
+                                <div
+                                  // data-percent={`${skills.proficiency}%`}
+                                  className="skill-bar-wrapper"
+                                  data-percent="90%"
+                                >
+                                  <div className="skill-bar" >
+                                    <div className="skill-bar-percent" style={{ width: `${skills.proficiency}%` }}>
+                                      <span className="percent-value">{skills.proficiency}%</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div className="skill-bar-single">
-                              <div className="skill-bar-title">
-                                <p>Visual Design</p>
-                              </div>
-                              <div
-                                className="skill-bar-wrapper"
-                                data-percent="90%"
-                              >
-                                <div className="skill-bar">
-                                  <div className="skill-bar-percent">
-                                    <span className="percent-value"></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            ))}
                           </div>
+
                           <p>{item.aboutMe}</p>
                         </div>
-                        <div className="socials mt-4">
+                        <div className="social mt-4">
                           {item.socials.map((social: any, i: number) => (
                             <Link
                               key={i}
                               href={social.url}
                               target="_blank"
+                              title={social.social}
                               rel="noreferrer"
                               className="text-white socialin"
                             >
-                              <p className="text-capitalize ">{social.social}</p>
+                              <p className="text-capitalize ">
+                                {social.social.charAt(0)}
+                              </p>
                             </Link>
                           ))}
-                          <Link
+                          {/* <Link
                             href="https://www.facebook.com/"
                             target="_blank"
                             aria-label="share us on facebook"
@@ -226,19 +222,20 @@ const TeamMembers = () => {
                             aria-label="share us on instagram"
                           >
                             <i className="fa-brands fa-instagram"></i>
-                          </Link>
+                          </Link> */}
                         </div>
                       </div>
                     </div>
                   </div>
                 </SwiperSlide>
+              
               ))
             ) : (
               <p className="text-white text-center mt-4">
                 No testimonials found.
               </p>
             )}
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <div className="team-s__slider-single">
                 <div className="team-wrap">
                   <div className="thumb">
@@ -362,8 +359,8 @@ const TeamMembers = () => {
                   </div>
                 </div>
               </div>
-            </SwiperSlide>
-            <SwiperSlide>
+            </SwiperSlide> */}
+            {/* <SwiperSlide>
               <div className="team-s__slider-single">
                 <div className="team-wrap">
                   <div className="thumb">
@@ -987,7 +984,7 @@ const TeamMembers = () => {
                   </div>
                 </div>
               </div>
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
         </div>
         <div className="slide-group">
