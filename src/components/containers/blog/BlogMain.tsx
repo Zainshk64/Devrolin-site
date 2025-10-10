@@ -18,9 +18,9 @@ const BlogMain = () => {
 
   const fetchBlogs = async () => {
     try {
-      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/blogs/recent").then(
-        (res) => res.json()
-      );
+      const recent = await fetch(
+        "https://pleasing-consideration-production.up.railway.app/api/blogs/recent"
+      ).then((res) => res.json());
       setRecentBlogs(recent);
     } catch (err) {
       toast.error("Error fetching blogs");
@@ -226,13 +226,9 @@ const BlogMain = () => {
                   </div>
                   <div className="widget__list">
                     <ul>
-                      
-                        <li>Web Development</li>
-                        {/* <Link href="blog">AI Brilliace</Link> */}
-                        <li>
-
-                        AI Brilliace
-                        </li>
+                      <li>Web Development</li>
+                      {/* <Link href="blog">AI Brilliace</Link> */}
+                      <li>AI Brilliace</li>
                     </ul>
                   </div>
                 </div>
@@ -256,7 +252,9 @@ const BlogMain = () => {
                         <div className="latest-content">
                           <p>{moment(blog.createdAt).format("MMMM D, YYYY")}</p>
                           <p>
-                            <Link href={`blog-single/${blog._id}`}>{blog.title}</Link>
+                            <Link href={`blog-single/${blog._id}`}>
+                              {blog.title}
+                            </Link>
                           </p>
                         </div>
                       </div>

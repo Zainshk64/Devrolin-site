@@ -53,15 +53,16 @@ const HomeOneBanner = () => {
             <div className="col-12">
               <div className="banner__content">
                 <h1 className="text-uppercase text-start fw-9 mb-0 title-anim">
-                  We are a 
-                  <span className="text-stroke"> premier</span>
+                  We are a<span className="text-stroke"> premier</span>
                   <span className="interval">
                     <i className="icon-arrow-top-right"></i> software company
                   </span>
                 </h1>
                 <div className="banner__content-inner">
                   <p>
-                  We are a software company committed to design, build, and optimize web apps with AI, blockchain, and SEO expertise—always on time, always exceptional
+                    We’re a Dubai-based leading software firm, driving
+                    innovation in AI, blockchain, and design while building
+                    strong partnerships for success.{" "}
                   </p>
                   <div className="cta section__content-cta">
                     <div className="single">
@@ -89,10 +90,16 @@ const HomeOneBanner = () => {
           <Link href="tel:+971522347966">Whatsapp : +971-522347966</Link>
         </div>
         <div className="banner-right-text banner-social-text d-none d-md-flex">
-          <Link href="https://www.instagram.com/dev.rolin/?hl=en" target="_blank">
+          <Link
+            href="https://www.instagram.com/dev.rolin/?hl=en"
+            target="_blank"
+          >
             instagram
           </Link>
-          <Link href="https://www.linkedin.com/company/devrolin/about/" target="_blank">
+          <Link
+            href="https://www.linkedin.com/company/devrolin/about/"
+            target="_blank"
+          >
             Linkedin
           </Link>
           <Link href="https://www.facebook.com/" target="_blank">

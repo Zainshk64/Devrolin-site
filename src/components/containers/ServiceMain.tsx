@@ -41,7 +41,6 @@ const ServiceMain = () => {
                   },
                 }}
               >
-               
                 <SwiperSlide>
                   <div className="service-t-single-wrapper">
                     <div className="service-t__slider-single">
@@ -51,15 +50,15 @@ const ServiceMain = () => {
                           <i className="fa-solid fa-arrow-right"></i>
                         </span>
                         <h4>
-                          <Link href="service-single">UX Design</Link>
+                          <Link href="service-single">Web Development</Link>
                         </h4>
                       </div>
                       <ul>
-                        <li>Estimation</li>
-                        <li>Research</li>
-                        <li>Story board</li>
-                        <li>User Flow</li>
-                        <li>Information Architecture</li>
+                        <li>Responsive modern design</li>
+                        <li>Fast and secure</li>
+                        <li>SEO optimized</li>
+                        <li>Custom web solutions</li>
+                        <li>Maintenance & support</li>
                       </ul>
                       {/* <div className="cta">
                         <Link href="service-single">
@@ -79,15 +78,16 @@ const ServiceMain = () => {
                           <i className="fa-solid fa-arrow-right"></i>
                         </span>
                         <h4>
-                          <Link href="service-single">UI Design</Link>
+                          <Link href="service-single">AI Development</Link>
                         </h4>
                       </div>
                       <ul>
-                        <li>Hi-Fidelity Wireframe</li>
-                        <li>Design System</li>
-                        <li>Final Presentation</li>
-                        <li>Final Delivery</li>
-                        <li>Post Delivery Support</li>
+                        <li>Smart automation tools</li>
+<li>Data-driven insights</li>
+<li>Custom AI models</li>
+<li>Predictive analytics</li>
+<li>Natural language tech</li>
+
                       </ul>
                       {/* <div className="cta">
                         <Link href="service-single">
@@ -107,15 +107,16 @@ const ServiceMain = () => {
                           <i className="fa-solid fa-arrow-right"></i>
                         </span>
                         <h4>
-                          <Link href="service-single">Web Development</Link>
+                          <Link href="service-single">Saas & Business Automation</Link>
                         </h4>
                       </div>
                       <ul>
-                        <li>Front End</li>
-                        <li>Backend</li>
-                        <li>Mobile App</li>
-                        <li>Post Delivery Support</li>
-                        <li>server development</li>
+                       <li>Cloud-based solutions</li>
+<li>Workflow automation</li>
+<li>Scalable platforms</li>
+<li>Real-time analytics</li>
+<li>Integration with tools</li>
+
                       </ul>
                       {/* <div className="cta">
                         <Link href="service-single">
@@ -126,35 +127,8 @@ const ServiceMain = () => {
                     </div>
                   </div>
                 </SwiperSlide>
-                <SwiperSlide>
-                  <div className="service-t-single-wrapper">
-                    <div className="service-t__slider-single">
-                      <div className="intro">
-                        <span className="sub-title">
-                          04
-                          <i className="fa-solid fa-arrow-right"></i>
-                        </span>
-                        <h4>
-                          <Link href="service-single">AI Brilliance</Link>
-                        </h4>
-                      </div>
-                      <ul>
-                        <li>Intelligent Automation</li>
-                        <li>Smart Chatbots & Assistants </li>
-                        <li>Mobile App Integraton</li>
-                        <li>AI-Powered Marketing & Sales</li>
-                        <li>Predictive Insights</li>
-                      </ul>
-                      {/* <div className="cta">
-                        <Link href="service-single">
-                          <i className="icon-arrow-top-right"></i>
-                          <span>service details</span>
-                        </Link>
-                      </div> */}
-                    </div>
-                  </div>
-                </SwiperSlide>
-                 {/* <SwiperSlide>
+              
+                {/* <SwiperSlide>
                   <div className="service-t-single-wrapper">
                     <div className="service-t__slider-single">
                       <div className="intro">
