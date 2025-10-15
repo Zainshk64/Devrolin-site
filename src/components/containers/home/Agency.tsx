@@ -74,6 +74,7 @@ const Agency = () => {
   }, []);
 
   const [openService, setOpenService] = useState(false);
+  const value = 100;
 
   return (
     <section className="section agency">
@@ -116,7 +117,7 @@ const Agency = () => {
                   <div className="skill-bar-title">
                     <p className="primary-text"> Web Application Development</p>
                   </div>
-                  <div className="skill-bar-wrapper" data-percent="90%">
+                  <div className="skill-bar-wrapper" data-percent="100%">
                     <div className="skill-bar">
                       <div className="skill-bar-percent">
                         <span className="percent-value"></span>
@@ -148,87 +149,103 @@ const Agency = () => {
                     </div>
                   </div>
                 </div>
+                <div
+                  className={`skill-bar-single  ${
+                    openService ? "visually-visible" : "visually-hidden"
+                  } `}
+                >
+                  <div className="skill-bar-title">
+                    <p className="primary-text">SaaS</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="skill-wrap">
-                {openService && (
-                  <>
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text">SaaS</p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text"> Mobile App Development</p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
+              <div
+                className={`skill-wrap  ${
+                  openService ? "visually-visible" : "visually-hidden"
+                } `}
+              >
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text">SaaS</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
                       </div>
                     </div>
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text">UI/UX Design</p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text">Digital Marketing</p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>{" "}
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text">
-                          Social Media Marketing (LinkedIn & IG)
-                        </p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
+                  </div>
+                </div>
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text"> Mobile App Development</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
                       </div>
                     </div>
-                    <div className="skill-bar-single">
-                      <div className="skill-bar-title">
-                        <p className="primary-text">SEO & GEO</p>
-                      </div>
-                      <div className="skill-bar-wrapper" data-percent="100%">
-                        <div className="skill-bar">
-                          <div className="skill-bar-percent">
-                            <span className="percent-value"></span>
-                          </div>
-                        </div>
+                  </div>
+                </div>
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text">UI/UX Design</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
                       </div>
                     </div>
-                  </>
-                )}
+                  </div>
+                </div>
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text">Digital Marketing</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>{" "}
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text">
+                      Social Media Marketing (LinkedIn & IG)
+                    </p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="skill-bar-single">
+                  <div className="skill-bar-title">
+                    <p className="primary-text">SEO & GEO</p>
+                  </div>
+                  <div className="skill-bar-wrapper" data-percent="100%">
+                    <div className="skill-bar">
+                      <div className="skill-bar-percent">
+                        <span className="percent-value"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="section__content-cta">

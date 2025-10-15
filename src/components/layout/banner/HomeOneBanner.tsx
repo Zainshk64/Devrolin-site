@@ -44,7 +44,6 @@ const HomeOneBanner = () => {
       }
     }
   }, []);
-
   return (
     <>
       <section className="banner">
