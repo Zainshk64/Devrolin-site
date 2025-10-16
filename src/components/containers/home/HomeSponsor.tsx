@@ -11,6 +11,8 @@ import five from "public/images/Logos-SponsorShip/9.png";
 import six from "public/images/Logos-SponsorShip/12.png";
 import seven from "public/images/Logos-SponsorShip/14.png";
 
+
+
 const HomeSponsor = () => {
   return (
     <div className="sponsor section pb-0">
@@ -51,7 +53,7 @@ const HomeSponsor = () => {
               >
                 <SwiperSlide>
                   <div className="sponsor__slider-item">
-                    <Image src={one} alt="Image" />
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760598428/AI_logo_cxeqxq.png' width={100} height={100} alt="Image" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>

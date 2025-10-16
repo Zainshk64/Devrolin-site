@@ -79,7 +79,10 @@ const HomeOneBanner = () => {
           </div>
         </div>
         <Image
-          src={banneronethumb}
+          // src={banneronethumb}
+          src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760506903/banner_kpqapn.png'
+          width={400}
+          height={400}
           alt="Image"
           className="banner-one-thumb d-none d-sm-block g-ban-one"
         />

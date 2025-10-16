@@ -37,7 +37,7 @@ const HomeTwoModal = () => {
   return (
     <>
       <div className="video-modal">
-        <Image src={modalbg} alt="Image" className="modal-bg" />
+        <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760592625/teamGroup_rpouzu.jpg' alt="Image" width={500} height={300} className="modal-bg" />
         <button
           className="video-frame video-btn"
           onClick={() => setVideoActive(true)}

@@ -89,7 +89,10 @@ const Agency = () => {
                 priority
               />
               <Image
-                src={thumbtwo}
+                // src={thumbtwo}
+                src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760507566/banner3_ejcjqq.jpg'
+                height={400}
+                width={400}
                 alt="Image"
                 className="thumb-two fade-right"
                 priority

@@ -46,7 +46,7 @@ const OurMission = () => {
           </div>
           <div className="col-12 col-lg-6">
             <div className="mission-s__single fade-top">
-              <Image src={one} alt="Image" />
+              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760593986/ourStory1_adzejq.jpg' width={500} height={500} alt="Image" />
             </div>
           </div>
           <div className="col-12 col-lg-6">

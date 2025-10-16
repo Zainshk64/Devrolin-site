@@ -35,7 +35,7 @@ const ModernLoader = () => {
         </div>
 
         {/* Loading Text */}
-        <p className="loading-text">Your Future , Our technology.</p>
+        <p className="loading-text">Your Future , Our technology</p>
       </div>
 
       <style jsx>{`
