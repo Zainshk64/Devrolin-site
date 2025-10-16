@@ -61,7 +61,8 @@ const Header = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                   </div>
                   <div className="navbar__options">
                     <button
-                    style={{ border: '2px solid #594c48' }}
+                    // 594c48
+                    style={{ border: '2px solid #FD8B28' }}
                       className="open-offcanvas-nav border: 2px solid orange d-flex"
                       aria-label="toggle mobile menu"
                       title="open offcanvas menu"
