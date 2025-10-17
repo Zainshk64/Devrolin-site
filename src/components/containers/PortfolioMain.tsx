@@ -18,7 +18,7 @@ const PortfolioMain = () => {
           <div className="col-12 col-lg-6">
             <div className="portfolio-m__single topy-tilt fade-top">
               <div className="thumb">
-                <Link href="service-single">
+                <Link href="/service-single">
                   <Image src={eleven} alt="Image" />
                 </Link>
               </div>

@@ -53,7 +53,7 @@ const HomeSponsor = () => {
               >
                 <SwiperSlide>
                   <div className="sponsor__slider-item">
-                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760598428/AI_logo_cxeqxq.png' width={100} height={100} alt="Image" />
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760686556/openAi_logo_ehbq8x.png' width={300} height={300} alt="Image" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
