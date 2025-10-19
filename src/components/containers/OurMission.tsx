@@ -46,12 +46,12 @@ const OurMission = () => {
           </div>
           <div className="col-12 col-lg-6">
             <div className="mission-s__single fade-top">
-              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760880754/ourstory1_nxbak3.png' width={700} height={700} alt="Image" />
+              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760898277/ourstory2.png_cqppay.jpg' width={700} height={700} alt="Image" />
             </div>
           </div>
           <div className="col-12 col-lg-6">
             <div className="mission-s__single fade-top">
-              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760593988/ourStory_gr2iaj.jpg' 
+              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760898210/ourstory1_zsavh3.jpg' 
               width={700} height={700} alt="Image" />
             </div>
           </div>
