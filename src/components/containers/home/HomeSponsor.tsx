@@ -53,10 +53,109 @@ const HomeSponsor = () => {
               >
                 <SwiperSlide>
                   <div className="sponsor__slider-item">
-                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760686556/openAi_logo_ehbq8x.png' width={300} height={300} alt="Image" />
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885359/openAi_logo_ek4tjh.png' width={130} height={130} alt="Image" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src=
+                    'https://res.cloudinary.com/daljxhxzf/image/upload/v1760879770/react_x9eaze.png'
+                    width={130} height={130}
+                     alt="reactlogo" />
+                  </div>
+                </SwiperSlide>
+                
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760879769/python_jmdsit.png'
+                    height={150} width={150}
+                     alt="pythonLogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883280/nextjs_sfch5z.png'
+                    height={150} width={150} alt="nextjslogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883292/flutter_pvfpsk.png'
+                    height={150} width={150} alt="flutterlogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883534/web3_trvl1w.png'
+                    width={150} height={150} alt="web3logo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885358/figma_ujh0hq.png' 
+                    width={150} height={150}
+                    alt="figmaLogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885359/gemini_ml3rsa.png' 
+                    width={150} height={150} alt="gemini" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885359/openAi_logo_ek4tjh.png' width={130} height={130} alt="Image" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src=
+                    'https://res.cloudinary.com/daljxhxzf/image/upload/v1760879770/react_x9eaze.png'
+                    width={130} height={130}
+                     alt="reactlogo" />
+                  </div>
+                </SwiperSlide>
+                
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760879769/python_jmdsit.png'
+                    height={150} width={150}
+                     alt="pythonLogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883280/nextjs_sfch5z.png'
+                    height={150} width={150} alt="nextjslogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883292/flutter_pvfpsk.png'
+                    height={150} width={150} alt="flutterlogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760883534/web3_trvl1w.png'
+                    width={150} height={150} alt="web3logo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885358/figma_ujh0hq.png' 
+                    width={150} height={150}
+                    alt="figmaLogo" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="sponsor__slider-item">
+                    <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760885359/gemini_ml3rsa.png' 
+                    width={150} height={150} alt="gemini" />
+                  </div>
+                </SwiperSlide>
+                {/* <SwiperSlide>
                   <div className="sponsor__slider-item">
                     <Image src={two} alt="Image" />
                   </div>
@@ -83,26 +182,6 @@ const HomeSponsor = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="sponsor__slider-item">
-                    <Image src={one} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={two} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={one} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={two} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
                     <Image src={three} alt="Image" />
                   </div>
                 </SwiperSlide>
@@ -120,27 +199,7 @@ const HomeSponsor = () => {
                   <div className="sponsor__slider-item">
                     <Image src={six} alt="Image" />
                   </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={three} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={four} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={five} alt="Image" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="sponsor__slider-item">
-                    <Image src={six} alt="Image" />
-                  </div>
-                </SwiperSlide>
+                </SwiperSlide> */}
               </Swiper>
             </div>
           </div>
