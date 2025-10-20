@@ -12,7 +12,7 @@ const HomeTwoAward = () => {
         <div className="row gaper align-items-center">
           <div className="col-12 col-lg-6">
             <div className="award__thumb dir-rtl">
-              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760900601/ourstoryrounded_rdj8tz.jpg'
+              <Image src='https://res.cloudinary.com/daljxhxzf/image/upload/v1760937565/ourstoryrounded_cj51vk.jpg'
               width={800} height={500} alt="Image" className="unset fade-left" />
             </div>
           </div>

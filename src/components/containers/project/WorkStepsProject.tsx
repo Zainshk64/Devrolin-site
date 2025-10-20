@@ -83,7 +83,7 @@ const WorkStepsProject = () => {
                 <div
                   className="work-thumb-hover d-none d-md-block"
                   style={{
-                    backgroundImage: "url('/images/work/thumb-one.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/daljxhxzf/image/upload/v1760936950/workprocess_er0pqd.jpg')",
                   }}
                 ></div>
               </div>
@@ -104,7 +104,7 @@ const WorkStepsProject = () => {
                 <div
                   className="work-thumb-hover d-none d-md-block"
                   style={{
-                    backgroundImage: "url('/images/work/thumb-one.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/daljxhxzf/image/upload/v1760936950/workprocess_er0pqd.jpg')",
                   }}
                 ></div>
               </div>
@@ -125,7 +125,7 @@ const WorkStepsProject = () => {
                 <div
                   className="work-thumb-hover d-none d-md-block"
                   style={{
-                    backgroundImage: "url('/images/work/thumb-one.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/daljxhxzf/image/upload/v1760936950/workprocess_er0pqd.jpg')",
                   }}
                 ></div>
               </div>
@@ -146,7 +146,7 @@ const WorkStepsProject = () => {
                 <div
                   className="work-thumb-hover d-none d-md-block"
                   style={{
-                    backgroundImage: "url('/images/work/thumb-one.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/daljxhxzf/image/upload/v1760936950/workprocess_er0pqd.jpg')",
                   }}
                 ></div>
               </div>
