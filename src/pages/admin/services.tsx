@@ -357,7 +357,7 @@ const AdminServices = () => {
                     src={service.mainImage?.url}
                     className="card-img-top img-fluid"
                     alt={service.mainImage?.alt || "Main Image"}
-                    style={{ height: 180, objectFit: "cover" }}
+                    style={{ height: 200, objectFit: "cover" }}
                   />
                   <div className="card-body">
                     <h5 className="card-title">{service.title}</h5>

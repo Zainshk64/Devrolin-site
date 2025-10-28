@@ -525,6 +525,9 @@ export default function Teams() {
                 </div>
               </div>
             ))}
+              {members.length === 0 && (
+                          <p className="text-white text-center mt-4">No team member found.</p>
+                        )}
           </div>
         </div>
       </AdminLayout>

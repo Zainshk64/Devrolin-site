@@ -37,13 +37,13 @@ export default function AdminProjects({
       {projects.length > 0 ? (
         <div className="row">
           {projects.map((project) => (
-            <div key={project._id} className="col-20 col-md-8 col-lg-4 mb-4">
+            <div key={project._id} className="col-20 col-md-8 col-lg-6 mb-4">
               <div className="card bg-black text-white border border-secondary h-100 position-relative">
                 <img
                   src={project.thumbnail?.url}
                   className="card-img-top img-fluid"
                   alt={project.thumbnail?.alt || "project"}
-                  style={{ height: 180, objectFit: "cover" }}
+                  style={{ height: 300, objectFit: "cover" }}
                 />
 
                 {/* Delete Button */}
