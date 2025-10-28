@@ -120,7 +120,7 @@ const ProjectMain = ({ projects }: { projects: any }) => {
       </div>
        */}
 
-      <div className="project-sl__single">
+      {/* <div className="project-sl__single">
         <div className="thumb">
           <Link href="project-single">
             <Image src={hrfive} alt="Image" />
@@ -247,7 +247,7 @@ const ProjectMain = ({ projects }: { projects: any }) => {
             </Link>
           </h2>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
