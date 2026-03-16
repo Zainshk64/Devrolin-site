@@ -5,6 +5,7 @@ import phone from "public/images/phone.png";
 import mail from "public/images/mail.png";
 import location from "public/images/location.png";
 import time from "public/images/time.png";
+import { StartProjectButton } from "@/components/ConsultForm";
 
 const ContactMain = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -40,7 +41,10 @@ const ContactMain = () => {
   return (
     <section className="section contact-m fade-wrapper">
       <div className="container">
+              <StartProjectButton label="Work With Us" />             
+
         <div className="row gaper">
+
           <div className="col-12 col-sm-6 col-xl-3">
             <div className="contact-m__single topy-tilt fade-top">
               <div className="thumb">
