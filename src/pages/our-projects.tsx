@@ -12,7 +12,7 @@ const OurProjects = () => {
     const fetchProjects = async () => {
       const token = localStorage.getItem('adminToken');
       try {
-        const res = await fetch('https://pleasing-consideration-production.up.railway.app/api/projects/', {
+        const res = await fetch('https://www.devrolin.com/api/projects/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

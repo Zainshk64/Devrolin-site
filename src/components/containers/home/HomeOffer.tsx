@@ -36,7 +36,7 @@ const HomeOffer = () => {
 
   const fetchService = async () => {
     try {
-      const recent = await fetch("https://pleasing-consideration-production.up.railway.app/api/services").then(
+      const recent = await fetch("https://www.devrolin.com/api/services").then(
         (res) => res.json()
       );
       setOurServices(recent.services);

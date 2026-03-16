@@ -29,7 +29,7 @@ const BlogDetailsMain = ({ blogs }: { blogs: any }) => {
   const fetchBlogs = async () => {
     try {
       const recent = await fetch(
-        "https://pleasing-consideration-production.up.railway.app/api/blogs/recent"
+        "https://www.devrolin.com/api/blogs/recent"
       ).then((res) => res.json());
       setRecentBlogs(recent);
     } catch (err) {
@@ -42,7 +42,7 @@ const BlogDetailsMain = ({ blogs }: { blogs: any }) => {
       return toast.error("Fill all fields");
     try {
       const res = await fetch(
-        `https://pleasing-consideration-production.up.railway.app/api/blogs/${blogs._id}/comments`,
+        `https://www.devrolin.com/api/blogs/${blogs._id}/comments`,
         {
           method: "POST",
           headers: {

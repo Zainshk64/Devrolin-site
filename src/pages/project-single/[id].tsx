@@ -35,7 +35,7 @@ export default function ProjectDetailsPage() {
   const fetchProject = async () => {
     try {
       const res = await fetch(
-        `https://pleasing-consideration-production.up.railway.app/api/projects/${id}`
+        `https://www.devrolin.com/api/projects/${id}`
       );
 
       if (!res.ok) {

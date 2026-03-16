@@ -152,12 +152,14 @@ const ContactMain = () => {
                           />
                         </div>
                       </div>
-                      <div className="group-input drt">
-                        <select className="subject" name="contact-subject" required>
-                          <option value="" disabled selected>Subject</option>
-                          <option value="Design & Development">Design & Development</option>
-                          <option value="AI Solutions">AI Brilliance</option>
-                        </select>
+                      <div className="group-input">
+                       <input
+                            type="text"
+                            name="contact-subject"
+                            id="contactSubject"
+                            placeholder="Subject"
+                            required
+                          />
                       </div>
                       <div className="group-input">
                         <textarea

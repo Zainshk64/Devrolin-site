@@ -24,7 +24,7 @@ export default function TestimonialsPage() {
   const fetchTestimonials = async () => {
     try {
       const res = await fetch(
-        "https://pleasing-consideration-production.up.railway.app/api/testimonials/"
+        "https://www.devrolin.com/api/testimonials/"
       );
       const data = await res.json();
       setTestimonials(data);
@@ -37,7 +37,7 @@ export default function TestimonialsPage() {
   const handleTestDelete = async (Id: string) => {
     try {
       const res = await fetch(
-        `https://pleasing-consideration-production.up.railway.app/api/admin/delete-testimonial/${Id}`,
+        `https://www.devrolin.com/api/admin/delete-testimonial/${Id}`,
         {
           method: "DELETE",
           headers: {
@@ -111,10 +111,10 @@ export default function TestimonialsPage() {
       let method: "POST" | "PUT" = "POST";
 
       if (editId) {
-        url = `https://pleasing-consideration-production.up.railway.app/api/admin/edit-testimonial/${editId}`;
+        url = `https://www.devrolin.com/api/admin/edit-testimonial/${editId}`;
         method = "PUT";
       } else {
-        url = "https://pleasing-consideration-production.up.railway.app/api/admin/new-testimonial";
+        url = "https://www.devrolin.com/api/admin/new-testimonial";
         method = "POST";
       }
 

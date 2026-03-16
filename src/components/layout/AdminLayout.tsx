@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
     try {
       const res = await fetch(
-        "https://pleasing-consideration-production.up.railway.app/api/admin/logout",
+        "https://www.devrolin.com/api/admin/logout",
         {
           method: "POST",
           headers: {
