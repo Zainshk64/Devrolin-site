@@ -124,6 +124,7 @@ const ContactMain = () => {
                       referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
                   </div>
+                  
                 </div>
                 <div className="col-12 col-lg-6">
                   <div className="contact-main__form fade-top">
