@@ -23,7 +23,7 @@ const StartProjectButton: React.FC<StartProjectButtonProps> = ({
   variant = "default",
   className = "",
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const btnClass = [
     "cf-trigger-btn",

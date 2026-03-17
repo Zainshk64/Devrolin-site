@@ -33,7 +33,7 @@ $font-b:      'DM Sans', sans-serif;
 
 // ── Backdrop ──────────────────────────────────────────────────────────────────
 .cf-backdrop {
-  position: fixed;
+  position: static;
   inset: 0;
   z-index: 10000;
   background: rgba(0,0,0,0.82);
@@ -869,6 +869,7 @@ $font-b:      'DM Sans', sans-serif;
 
 .cf-success__close {
   display: inline-flex;
+  margin-top:10px;
   align-items: center;
   gap: 8px;
   background: linear-gradient(135deg, $orange 0%, $orange-lt 100%);

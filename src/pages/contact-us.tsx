@@ -9,7 +9,6 @@ const ContactUs = () => {
     <Layout header={2} footer={5} video={0}>
       <CmnBanner title="Contact Us" navigation="Contact Us" />
       <ContactMain />
-      <StartProjectButton label="Work With Us" />             
 
     </Layout>
   );
